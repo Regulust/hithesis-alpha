@@ -39,7 +39,7 @@
 - 修改section编号样式
 开题/中期报告只有最高section层级，没有chapter层级，默认如果直接不写chapter 则section标号为"0.1".，所以重新定义了section编号样式，选择开题/中期时自动更改。
 - 在文献环境{thebibliography}处添加开题/中期判断
-修改{thebibliography}处配置，添加了开题/中期判断，在使用开题/中期报告模式下，参考文献为带标号的section层级，并且不另起新页。
+在使用开题/中期报告模式下，若需要参考文献，将参考文献部分改为为带标号的section层级，但需要将参考文献```\bibliography{reference}```添加到body文档中，并注释掉主文档的该行，否则会另起新页。
 
 \* *修改、添加的位置暂时以 "_added by t"注明，原本方便自己查找纠错，暂未更新到原hithesis的注释样式。*
 
@@ -71,7 +71,7 @@
 ## 致谢及声明
 首先感谢Dustincys大神编写的[Hithesis](https://github.com/dustincys/hithesis)模板及[PlutoThesisProposal](https://github.com/dustincys/PlutoThesisProposal)模板，膜拜。
 
-本人也是才疏学浅，对LaTex的了解也是“一知半解”，只是自己用到，一时兴起，想着分享出来。暂时只为满足自己使用需要，无精力进行完整测试及进一步优化，有交流需要请加入 hithesis 交流QQ群：259959600，大神超多。
+本人也是才疏学浅，对LaTex的了解也是“一知半解”，只是自己用到，一时兴起，想着分享出来。该项目的首要原则为不影响原hithesis功能和显示，所以更改添加的代码冗杂不美观。暂时只是为满足自己使用需要，无精力进行完整测试及进一步优化。有交流需要请加入 hithesis 交流QQ群：259959600，大神超多。
 
 再次对[Dustincys](https://github.com/dustincys)等窝工LaTeX各路大神表示感谢。
 

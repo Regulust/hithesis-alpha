@@ -36,6 +36,8 @@
 - 新定义开题/中期报告封面样式\hit@report@titlepage
 - 分别添加 研究生/本科生 开题/中期报告封面
 代码参考自[PlutoThesisProposal](https://github.com/dustincys/PlutoThesisProposal)，膜拜Dustincys大神。
+- 修改section编号样式
+开题/中期报告只有最高section层级，没有chapter层级，默认如果直接不写chapter 则section标号为"0.1".，所以重新定义了section编号样式，选择开题/中期时自动更改。
 
 \* *所有修改、添加的位置均注明了 "_added by t"，方便查找纠错。*
 

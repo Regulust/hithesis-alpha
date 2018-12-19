@@ -51,11 +51,18 @@
 因为封面是由[PlutoThesisProposal](https://github.com/dustincys/PlutoThesisProposal) 项目中修改而来，代码风格仍是PlutoThesis时代，本人水平、精力有限，只能修改到让其运行起来，暂无力优化。
 
 ### 变通方法
-目前bug问题主要存在于封面页面，如果自动生成封面无法满足需要，可以自行下载填写学校word模板封面页面，生成pdf文件，放入front文件夹，命名为report_cover.pdf，使用```\includepdfmerge{front/report_cover.pdf}	``` 命令手动插入该pdf封面，并注释掉下面```\input{front/reportcover}```  及 ```\makecover``` 两行。
+- 目前bug问题主要存在于报告的封面页，如果自动生成封面无法满足需要，可以采用变通方法
+首先，自行下载并填写学校word模板封面页，然后生成pdf文件，放入front文件夹，命名为report_cover.pdf，使用
+```\includepdfmerge{front/report_cover.pdf}	``` 命令手动插入该pdf封面，并注释掉下面```\input{front/reportcover}```  及 ```\makecover``` 两行。
+
+*\* 该方法同样适用于综合考评等其它报告场景。*
+
 附：
-[窝工博士生培养过程相关下载](http://hitgs.hit.edu.cn/e0/a8/c3416a123048/page.psp)
-[窝工硕士生培养过程相关下载](http://hitgs.hit.edu.cn/e0/b2/c3359a123058/page.psp)
-[窝工本科毕业设计相关下载](http://jwc.hit.edu.cn/2566/list.htm)
+[窝工博士生培养过程相关文件/模板下载](http://hitgs.hit.edu.cn/e0/a8/c3416a123048/page.psp)
+
+[窝工硕士生培养过程相关文件/模板下载](http://hitgs.hit.edu.cn/e0/b2/c3359a123058/page.psp)
+
+[窝工本科毕业设计相关文件/模板下载](http://jwc.hit.edu.cn/2566/list.htm)
 
 ## 致谢及声明
 首先感谢Dustincys大神编写的[Hithesis](https://github.com/dustincys/hithesis)模板及[PlutoThesisProposal](https://github.com/dustincys/PlutoThesisProposal)模板，膜拜。

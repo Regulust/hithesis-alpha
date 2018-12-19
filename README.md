@@ -28,7 +28,7 @@
 有些专业需用到特殊的宏包，以及自己码文时自定义一些方便的快捷命令，可以统一放在./front/custom_definition.tex中
 
 #### 样式code
-主要修改添加 hithesis.dtx文件的部分代码。
+主要修改添加 hithesis.dtx 文件的部分代码，变动优先考虑不影响原hithesis的功能及样式。
 - 添加hit@stage项，用于区分kaiti、zhongqi
 - 添加noheader项，用于手动去掉页眉
 - \fancypagestyle{hit@headings}添加开题/中期的显示设置

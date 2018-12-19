@@ -67,16 +67,27 @@
 ## 样式示例
 
 ![本科毕业设计中期封面](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221844/Github/templete_bachelor_zhongqi_0.jpg)
+
 *本科毕业设计中期封面*
+
 ![本科毕业设计中期目录页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221846/Github/templete_bachelor_zhongqi_1.jpg)
+
 *本科毕业设计中期目录页*
+
 ![本科毕业设计中期封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221849/Github/templete_bachelor_zhongqi_2.jpg)
+
 *本科毕业设计中期封面内容页*
+
 ![硕士开题封面](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221838/Github/templete_master_kaiti_0.jpg)
+
 *硕士开题封面*
+
 ![硕士开题目录页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221847/Github/templete_master_kaiti_1.jpg)
+
 *硕士开题目录页*
+
 ![硕士开题封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221849/Github/templete_master_kaiti_2.jpg)
+
 *硕士开题封面内容页*
 
 ---

@@ -38,8 +38,10 @@
 代码参考自[PlutoThesisProposal](https://github.com/dustincys/PlutoThesisProposal)，膜拜Dustincys大神。
 - 修改section编号样式
 开题/中期报告只有最高section层级，没有chapter层级，默认如果直接不写chapter 则section标号为"0.1".，所以重新定义了section编号样式，选择开题/中期时自动更改。
+- 在文献环境{thebibliography}处添加开题/中期判断
+修改{thebibliography}处配置，添加了开题/中期判断，在使用开题/中期报告模式下，参考文献为带标号的section层级，并且不另起新页。
 
-\* *所有修改、添加的位置均注明了 "_added by t"，方便查找纠错。*
+\* *修改、添加的位置暂时以 "_added by t"注明，原本方便自己查找纠错，暂未更新到原hithesis的注释样式。*
 
 
 ## 问题及变通

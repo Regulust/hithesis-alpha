@@ -2880,8 +2880,18 @@ delim_1 "\\hspace*{\\fill}"
 \def\@inlinecite#1{\begingroup\citestyle{inline}\let\@cite\NAT@citenum\citep{#1}\endgroup}
 \let\onlinecite\inlinecite
 \renewenvironment{thebibliography}[1]{%
+% \changes{v2.0.6a}{20181220}(添加开题/中期报告，参考文献使用section层级，并且不另起新页) _added by t
+%    \begin{macrocode}
+  \ifhit@kaiti
+  \section{\bibname}[\hit@bibname@etitle]
+  \else
+  \ifhit@zhongqi
+  \section{\bibname}[\hit@bibname@etitle]
+  \else
   \ifhit@openright\cleardoublepage\else\clearpage\fi\phantomsection%
   \hit@appendix@chapter*{\bibname}[\hit@bibname@etitle]
+  \fi \fi
+%    \end{macrocode}
   \normalsize
   \list{\@biblabel{\@arabic\c@enumiv}}%
   {\renewcommand{\makelabel}[1]{##1\hfill}

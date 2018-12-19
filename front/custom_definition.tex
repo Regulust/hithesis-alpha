@@ -1,0 +1,39 @@
+%在下面添加自定义宏包、命令
+
+%------------以下是自定义添加的宏包（下面为示例，可删除）------------------
+\usepackage{leftidx} %左上标
+\usepackage{multirow} %表格多行合并
+\usepackage{slashed}	% 场论slash
+\usepackage{cancel}
+
+\usepackage{setspace} %用于调整多行公式间距， \begin{spacing}{1.6} \begin{equation}..\end{equation}\end{spacing}  ！！！caution：使用宏包同时也会改变表格的行距需在每个表格\begin{table}后添加：\renewcommand\arraystretch{1.55}
+
+
+
+
+
+
+%------------以下是自定义添加的命令（下面为示例，可删除）------------------
+
+%重新定义section和subsection标号格式，去掉Chapter继承标号，因为开题等报告没有Chapter层级
+%\renewcommand\thesection{\arabic {section}.}
+%\renewcommand\thesubsection{\thesection \arabic {subsection}}
+
+%-------罗马数字定义-------
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+
+%---------正体字母定义------------
+\newcommand{\ud}{\mathrm{d}}
+\newcommand{\ue}{\mathrm{e}}
+\newcommand{\ui}{\mathrm{i}}
+
+%---------度°符号定义-------------
+\def\degree{\ensuremath{{}^{\circ}}} 
+
+%---------tabular行距------------
+%\renewcommand{\arraystretch}{1.25}
+

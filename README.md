@@ -11,14 +11,6 @@
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a><br />由[hithesis-alpha](https://github.com/Regulust/hithesis-alpha) 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。
 
-## 样式
-![本科毕业设计中期封面](https://res.cloudinary.com/regulus/image/upload/v1545221844/Github/templete_bachelor_zhongqi_0.jpg)
-![本科毕业设计中期目录页](https://res.cloudinary.com/regulus/image/upload/v1545221846/Github/templete_bachelor_zhongqi_1.jpg)
-![本科毕业设计中期封面内容页](https://res.cloudinary.com/regulus/image/upload/v1545221849/Github/templete_bachelor_zhongqi_2.jpg)
-![硕士开题封面](https://res.cloudinary.com/regulus/image/upload/v1545221838/Github/templete_master_kaiti_0.jpg)
-![硕士开题目录页](https://res.cloudinary.com/regulus/image/upload/v1545221847/Github/templete_master_kaiti_1.jpg)
-![硕士开题封面内容页](https://res.cloudinary.com/regulus/image/upload/v1545221849/Github/templete_master_kaiti_2.jpg)
-
 ## 使用说明
 - 首先基本使用方法与原来hithesis一致
 先执行```latex hithesis.ins```(macOS/Linux) ```lualatex hithesis.ins```(Windows，未测试)，然后在主文档中正常选择学位类型 ```type=doctor/master/bachelor```
@@ -72,7 +64,20 @@
 
 再次对[Dustincys](https://github.com/dustincys)等窝工LaTeX各路大神表示感谢。
 
+## 样式示例
 
+![本科毕业设计中期封面](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221844/Github/templete_bachelor_zhongqi_0.jpg)
+*本科毕业设计中期封面*
+![本科毕业设计中期目录页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221846/Github/templete_bachelor_zhongqi_1.jpg)
+*本科毕业设计中期目录页*
+![本科毕业设计中期封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221849/Github/templete_bachelor_zhongqi_2.jpg)
+*本科毕业设计中期封面内容页*
+![硕士开题封面](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221838/Github/templete_master_kaiti_0.jpg)
+*硕士开题封面*
+![硕士开题目录页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221847/Github/templete_master_kaiti_1.jpg)
+*硕士开题目录页*
+![硕士开题封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221849/Github/templete_master_kaiti_2.jpg)
+*硕士开题封面内容页*
 
 ---
  ***hithesis原说明文档 请查看 [README_hithesis.md](https://github.com/dustincys/hithesis) 。***

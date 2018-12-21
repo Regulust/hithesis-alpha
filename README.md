@@ -1,6 +1,14 @@
 # hithesis-alpha
 # 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式) 
 
+**update:** 
+*v2.0.6.1a 20181221*
+
+- 修改调整图表编号设置
+添加判断，在开题/中期时，使图表编号为 section-1 的格式，而非 chapter-1，因为开题/中期报告没有chapter章这一层级
+
+---
+
 *V2.0.6a 20181219*
 
 [hithesis-alpha](https://github.com/regulust/hithesis-alpha) 是在原 [hithesis](https://github.com/dustincys/hithesis) (v2.0.6 - 20181205) 基础上进行的尝试，添加了开题/中期样式。添加过程不影响原有的关于毕业论文的设置与功能。

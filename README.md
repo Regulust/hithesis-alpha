@@ -93,9 +93,9 @@
 
 *本科毕业设计中期目录页*
 
-![本科毕业设计中期封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221849/Github/templete_bachelor_zhongqi_2.jpg)
+![本科毕业设计中期封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545402059/Github/templete_bachelor_zhongqi_2.jpg)
 
-*本科毕业设计中期封面内容页*
+*本科毕业设计中期内容页*
 
 ![硕士开题封面](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221838/Github/templete_master_kaiti_0.jpg)
 
@@ -105,7 +105,7 @@
 
 *硕士开题目录页*
 
-![硕士开题封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545221849/Github/templete_master_kaiti_2.jpg)
+![硕士开题封面内容页](https://res.cloudinary.com/regulus/image/upload/c_scale,q_99,w_600/v1545402067/Github/templete_master_kaiti_2.jpg)
 
 *硕士开题封面内容页*
 

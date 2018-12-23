@@ -19,7 +19,8 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
 
 ## 使用说明
-- 首先基本使用方法与原来hithesis一致
+*推荐前往[hithesis](https://github.com/dustincys/hithesis)先阅读原说明或者在终端执行```texdoc hithesis```阅读原说明文档(需已安装TeXLive2017及更新版本)。*
+- 基本使用方法与原来hithesis一致
 先执行```latex hithesis.ins```(macOS/Linux) ```lualatex hithesis.ins```(Windows，未测试)，然后在主文档中正常选择学位类型 ```type=doctor/master/bachelor```
 - 选择```stage=kaiti,zhongqi```
 如需使用开题/中期报告时选填(需放在type项前)，去掉该项缺省为false，即为原来hithesisd的本硕博毕业论文格式。

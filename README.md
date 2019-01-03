@@ -15,7 +15,7 @@
 
 目前对研究生开题/中期样式支持较好，而本科生开题/中期报告存在部分问题，详见下文问题说明。
 
-本项目继承原[hithesis](https://github.com/dustincys/hithesis) CC协议及[LaTeX Project Public License](https://en.wikipedia.org/wiki/LaTeX_Project_Public_License)。<br />由[hithesis-alpha](https://github.com/Regulust/hithesis-alpha) 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。
+本项目继承原[hithesis](https://github.com/dustincys/hithesis) CC协议及[LaTeX Project Public License](https://www.latex-project.org/lppl/)。<br />由[hithesis-alpha](https://github.com/Regulust/hithesis-alpha) 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
 
 ## 使用说明

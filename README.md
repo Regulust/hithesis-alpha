@@ -1,7 +1,7 @@
 # hithesis-alpha
-# 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式) 
+# 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式)
 
-**update:** 
+**update:**
 *v2.0.6.1a 20181221*
 
 - 修改调整图表编号设置
@@ -113,3 +113,4 @@
 ---
  ***hithesis原说明文档 请查看 [README_hithesis.md](https://github.com/dustincys/hithesis) 。***
 
+ >用的开心的小伙伴，可以考虑扫个红包码支持一下啊[打开支付宝首页搜“557241165”领红包]，嘻嘻嘻～

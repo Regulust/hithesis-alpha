@@ -1,5 +1,19 @@
-# hithesis-alpha
+# hithesis-beta
 # 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式)
+
+hithesis-beta是在hithesis-alpha的基础上进行的改编尝试，修复了一些bug，满足威海校区本科的开题，同时更新到了最新的hithesis。
+
+**update:**
+*v2.0.9.1 20200104*
+
+- 更新hithesis到v2.0.9版本 ;
+- 修正了本科开题报告封面格式问题。
+
+注意：此次更改只更改了本科开题报告部分，同时版本是配套**威海校区**，可能会有略微差别，可自行调整。
+
+
+
+**以下是hithesis-alpha的说明：**
 
 **update:**
 *v2.0.6.1a 20181221*
@@ -65,7 +79,7 @@
 ### 变通方法
 - 目前bug问题主要存在于报告的封面页，如果自动生成封面无法满足需要，可以采用变通方法
 首先，自行下载并填写学校word模板封面页，然后生成pdf文件，放入front文件夹，命名为report_cover.pdf，使用
-```\includepdfmerge{front/report_cover.pdf}	``` 命令手动插入该pdf封面，并注释掉下面```\input{front/reportcover}```  及 ```\makecover``` 两行。
+	```\includepdfmerge{front/report_cover.pdf}	``` 命令手动插入该pdf封面，并注释掉下面```\input{front/reportcover}```  及 ```\makecover``` 两行。
 
 *\* 该方法同样适用于综合考评等其它报告场景。*
 

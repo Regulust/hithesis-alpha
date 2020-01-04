@@ -19,7 +19,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hithesis.dtx}[2018/12/19 2.0.6a Harbin Institute of Technology Thesis Template(add proposal/midterm report)]
+\ProvidesFile{hithesis.dtx}[2019/06/27 2.0.11 Harbin Institute of Technology Thesis Template]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -85,7 +85,6 @@
 % \date{v\fileversion\ (\filedate)}
 % \maketitle\thispagestyle{empty}
 % 
-%
 % \begin{abstract}\noindent
 % 该宏包为哈尔滨工业大学本、硕、博毕业论文模板。以后会陆续加入开题、中期、博士后
 % 出站报告等模板。
@@ -755,7 +754,7 @@
 % 的 \cs{cite}\marg{key}，而 \cs{inlinecite}\marg{key} 则用来生成正文模式。
 %
 % 关于参考文献模板推荐使用 \BibTeX，关于中文参考文献需要额外增加一个 Entry:
-% \texttt{lang}，将其设置为 \texttt{zh} 用来指示此参考文献为中文，以
+% \texttt{language}，将其设置为 \texttt{zh} 用来指示此参考文献为中文，以
 % 便 \file{hithesis.bst} 处理。如：
 % \begin{latex}
 % @INPROCEEDINGS{cnproceed,
@@ -765,7 +764,7 @@
 %   year      = 2006,
 %   address   = {西安, 中国},
 %   month     = sep,
-%   lang      = "zh",
+%   language      = "zh",
 % }
 %
 % @ARTICLE{cnarticle,
@@ -775,7 +774,7 @@
 %   PAGES   = "260--266",
 %   VOLUME  = "224",
 %   YEAR    = "1800",
-%   LANG    = "zh",
+%   LANGUAGE    = "zh",
 % }
 % \end{latex}
 %
@@ -946,7 +945,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hithesis}
 %<cfg>\ProvidesFile{hithesis.cfg}
-%<cls|cfg>[2018/12/05 2.0.6 Harbin Institute of Technology Thesis Template]
+%<cls|cfg>[2019/06/27 2.0.11 Harbin Institute of Technology Thesis Template]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -1037,6 +1036,11 @@
 % 是否使用右开页（默认否）。
 %    \begin{macrocode}
 \DeclareBoolOption[false]{openright}
+%    \end{macrocode}
+% \changes{v2.0.10}{2019/6/25}{此处添加是否为提交图书馆电子版}
+% 是否为提交图书馆电子版。
+%    \begin{macrocode}
+\DeclareBoolOption[false]{library}
 %    \end{macrocode}
 % 图题和标题最后一行是否居中对其（默认是，非规范要求）。
 % \changes{v1.0.6}{2017/10/25}{此处更改了选项的名称}
@@ -1361,8 +1365,11 @@ delim_1 "\\hspace*{\\fill}"
 % \begin{macro}{\cleardoublepage}
 % 对于 \textsl{openright} 选项，必须保证章首页右开，且如果前章末页无内容须
 % 清空其页眉页脚。
+% 如果\textsl{library}为真，则强制设置\textsl{openright}为真。
+% \changes{v2.0.10}{2019/6/25}{添加\textsl{openright}和\textsl{library}逻辑}
 %    \begin{macrocode}
 %<*cls>
+\ifhit@library\hit@openrightfalse\else\relax\fi
 \let\hit@cleardoublepage\cleardoublepage
 \newcommand{\hit@clearemptydoublepage}{%
   \clearpage{\pagestyle{hit@empty}\hit@cleardoublepage}
@@ -1371,8 +1378,6 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\frontmatter}
-% \begin{macro}{\mainmatter}
-% \begin{macro}{\backmatter}
 % 我们的单面和双面模式与常规的不太一样。
 %    \begin{macrocode}
 \renewcommand\frontmatter{%
@@ -1381,25 +1386,36 @@ delim_1 "\\hspace*{\\fill}"
   \pagenumbering{Roman}
   \pagestyle{hit@empty}
 }
-
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\mainmatter}
+% 根据打印店（伪官方）的猛虎式操作，\cs{mainmatter}命令的逻辑是，双面打印时第一章必须在奇数页
+% （不看文档别怪我）。
+% \changes{v2.0.11}{2018/06/27}{设置第一章必须在奇数页}
+%    \begin{macrocode}
 \renewcommand\mainmatter{%
   \ifhit@tocblank%
   \addtocontents{toc}{\vspace{\baselineskip}} %规范中并没有这一要求，此处不应该加
   \addtocontents{toe}{\vspace{\baselineskip}}
   \fi%
-  \ifhit@openright\cleardoublepage\else\clearpage\fi
+  \ifhit@doctor%
+    \ifhit@library\clearpage\else\cleardoublepage\fi
+    \else%
+    \clearpage
+  \fi%
   \@mainmattertrue
   \pagenumbering{arabic}
   \pagestyle{hit@headings}
 }
-
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\backmatter}
+%    \begin{macrocode}
 \renewcommand\backmatter{%
   \ifhit@openright\cleardoublepage\else\clearpage\fi
   \@mainmattertrue}
 %</cls>
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
 % \end{macro}
 %
 % \subsubsection{字体}
@@ -1450,6 +1466,7 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\dachu}
 % \begin{macro}{\chuhao}
 % \begin{macro}{\xiaochu}
 % \begin{macro}{\yihao}
@@ -1470,6 +1487,7 @@ delim_1 "\\hspace*{\\fill}"
 % \begin{macro}{\bahao}
 % 一组字号定义。
 %    \begin{macrocode}
+\hit@def@fontsize{dachu}{58bp}
 \hit@def@fontsize{chuhao}{42bp}
 \hit@def@fontsize{xiaochu}{36bp}
 \hit@def@fontsize{yihao}{26bp}
@@ -1490,6 +1508,7 @@ delim_1 "\\hspace*{\\fill}"
 \hit@def@fontsize{bahao}{5bp}
 %</cls>
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -1548,6 +1567,7 @@ delim_1 "\\hspace*{\\fill}"
 	  \fi
 	  \fi
   \fi
+
   \ifhit@master
 	  \ifhit@kaiti	%页眉判断-开题 _added by t
 	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
@@ -1559,6 +1579,7 @@ delim_1 "\\hspace*{\\fill}"
   	  \fi
   	  \fi
   \fi
+
   \ifhit@bachelor
 	  \ifhit@kaiti	%页眉判断-开题 _added by t
 	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
@@ -1734,13 +1755,15 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 % \subsubsection{浮动对象以及表格}
 % \label{sec:float}
-% 设置浮动对象和文字之间的距离
+% 设置浮动对象和文字之间的距离，由于规范中没有明确规定，根据经验，设置成正文汉字
+% 高度。
 % \changes{v1.0.9}{2018/01/07}{修正float垂直间距bug}
+% \changes{v2.0.9}{2019/06/24}{修正float垂直间距bug}
 %    \begin{macrocode}
 %<*cls>
 \setlength{\intextsep}{\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp\else 8.50398bp\fi}
 \setlength{\textfloatsep}{\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp\else 8.50398bp\fi}
-\setlength{\floatsep}{\ifhit@glue 20.50398bp \@plus 2.83465bp \@minus 0bp\else 20.50398bp\fi}
+\setlength{\floatsep}{\ifhit@glue 12bp \@plus 2.83465bp \@minus 0bp\else 12bp\fi}
 %    \end{macrocode}
 %    此处设置float在p选项时间隔，此处不设置\cs{@fptop}和\cs{@fpbot}以确保居中。
 % \changes{v1.0.12}{2018/04/03}{修正float为p状态时默认不居中bug}
@@ -2194,6 +2217,7 @@ delim_1 "\\hspace*{\\fill}"
 \hit@def@term{cdate}
 
 \hit@def@term{cstudentid}%
+\hit@def@term{cclassid}%
 \hit@def@term{cstudenttype}%
 \hit@def@term{ctitleone}%
 \hit@def@term{ctitletwo}%
@@ -2258,6 +2282,9 @@ delim_1 "\\hspace*{\\fill}"
 \fi
 \ifhit@zhongqi
 \gdef\hit@stagestatus{中期报告}% 定义stagestatus字段  _added by t
+\fi
+\ifhit@bachelor
+\gdef\hit@cxuewei{学士}
 \fi
 \def\hit@bachelor@cxuewei{本科}
 \def\hit@bachelor@cthesisname{毕业设计（论文）}
@@ -2343,7 +2370,6 @@ delim_1 "\\hspace*{\\fill}"
 \newcommand{\hit@put@title}[2][\hit@title@width]{%
   \begin{CJKfilltwosides}[b]{#1}#2\end{CJKfilltwosides}}
 
-
 \def\hit@first@titlepage{%
   \ifhit@bachelor\hit@first@titlepage@bachelor\else\hit@first@titlepage@other\fi}
 \def\hit@second@titlepage{%
@@ -2383,35 +2409,49 @@ delim_1 "\\hspace*{\\fill}"
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 目前和标准模板还有些许区别，“题目”两个字与题目的内容一同居中，而学校模板是题目两个字位置固定，而题目内容单独居中。 
 %% 开题/中期报告封面—本科生 _added by t
+%% 修改开题报告模板，使之符合哈工大（威海）的规范，同时解决一些历史遗留问题
 \newcommand{\hit@report@titlepage@bachelor}{
 	\thispagestyle{empty}
 	\zihao{-2}\vspace*{10mm}
-	\renewcommand{\CJKglue}{\hskip 3pt plus 0.08\baselineskip}
 	\centering\includegraphics[width=6.2cm]{hitlogo}
 	\vfill
-	\centerline{\xiaoyi\songti\textbf{\hit@bachelor@cthesisname\hit@stagestatus}}
+	\centering{\xiaoyi\songti\textbf{
+    \renewcommand{\CJKglue}{\hskip 3pt plus 0.08\baselineskip}
+    \hit@bachelor@cthesisname\hit@stagestatus
+    }}
 	\vfill
 	%\zihao{-2}\vspace*{10mm}
 	\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-	\centerline{\songti\textbf{题目：\rule[-4pt]{220pt}{0pt}\hspace{-220pt}\textbf\hit@ctitleone}}
-	\centerline{\hspace{0em}\songti\textbf{\textbf\hit@ctitletwo}}		
+  \begin{center}
+    \renewcommand{\arraystretch}{1.5}
+    % 使用空格字符，保证能够空余半个汉字的位置
+    \begin{tabular}{m{54pt}@{\hspace{9pt}}l}
+      {\xiaoer\songti\textbf{题\hfill 目：}} & \songti\xiaoer\textbf{\hit@ctitleone} \\
+                    & \songti\xiaoer\textbf{\hit@ctitletwo} \\
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+  \end{center}
 	\zihao{3}\vspace{4\baselineskip}
-	\hspace*{70pt}{\songti
-		\renewcommand{\arraystretch}{2.5}
-		\begin{tabular}{l@{}l}
-			\textbf{专\hfill 业}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@csubject}\\
-			\textbf{学\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@cauthor}\\
-			\textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@cstudentid}\\
-			\textbf{指\hfill 导\hfill 教\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@csupervisor}\\
-			\textbf{日\hfill 期} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@cdate}\\
-		\end{tabular}\renewcommand{\arraystretch}{1}}
+	\hspace*{70pt}{
+    \begin{center}\songti
+		\renewcommand{\arraystretch}{2.1}
+		\begin{tabular}{l@{\ \ }c}
+			\textbf{专\hfill 业}                     & \underline{\makebox[6.1cm]{\textbf{\hit@csubject}}}\\
+			\textbf{学\hfill 生}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cauthor}}}\\
+			\textbf{学\hfill 号}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cstudentid}}}\\
+      \textbf{班\hfill 号}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cclassid}}}\\
+			\textbf{指\hfill 导\hfill 教\hfill 师}   & \underline{\makebox[6.1cm]{\textbf{\hit@csupervisor}}}\\
+			\textbf{日\hfill 期}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cdate}}}\\
+		\end{tabular}\renewcommand{\arraystretch}{1}
+    \end{center}
+    }
 	\vfill
-	\centerline{\heiti\textbf{哈尔滨工业大学教务处制}}
+	% \centerline{\lishu\textbf{哈尔滨工业大学教务处制}}
 	\vspace{0.5\baselineskip}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 目前本科生开题/中期报告封面，和教务处模板还有区别，主要表现在题目等间距不同，底部“哈尔滨工业大学教务处制”无法设置隶
-%% 书字体(虽然ctex-fontset-siyuan.def 定义了\lishu 命令，但使用报错，暂无精力调试)。 _added by t
+%% 书字体(虽然ctex-fontset-siyuan.def 定义了\lishu 命令，但使用报错，暂无精力调试)。 _added by t % 这一个没有测试，但在Windows下是可行的
 
 \newcommand{\hit@first@titlepage@bachelor}{
 \ifthenelse%
@@ -2473,6 +2513,7 @@ delim_1 "\\hspace*{\\fill}"
     }
   \end{center}
 }
+
 \newlength{\hit@etitlelength}%
 \newcommand{\hit@first@titlepage@other}{
   % 封面一
@@ -2609,22 +2650,25 @@ delim_1 "\\hspace*{\\fill}"
   \phantomsection
   \pdfbookmark[0]{\hit@ctitle}{ctitle}
   \xiaosi[1]%
+%    \end{macrocode}
+% \changes{v2.0.10}{2019/6/25}{此处添加提交图书馆电子版的逻辑}
+%    \begin{macrocode}
   \begin{titlepage}
     \hit@first@titlepage
-    \cleardoublepage
+    \ifhit@library\clearpage\else\cleardoublepage\fi
     \hit@second@titlepage
-    \cleardoublepage
+    \ifhit@library\clearpage\else\cleardoublepage\fi
     \ifhit@bachelor
     \relax
     \else
     \phantomsection
     \pdfbookmark[0]{\hit@etitle}{etitle}
     \hit@engcover
-    \cleardoublepage
+    \ifhit@library\clearpage\else\cleardoublepage\fi
     \fi
   \end{titlepage}
   \normalsize
-\hit@makeabstract}
+  \hit@makeabstract}
 \fi
 \fi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2729,7 +2773,11 @@ delim_1 "\\hspace*{\\fill}"
       \advance\leftskip\@tempdima
       \hskip -\leftskip
       % numberline is called here, and it uses \@tempdima
-      {\ifhit@bachelor\sffamily\else\csname hit@toc@font\endcsname\fi\heiti #1}
+%    \end{macrocode}
+% 修改本科生论文目录格式
+% \changes{v2.0.8}{2017/06/15}{修改本科生论文目录格式（感谢QQ:嬴政　同学）}
+%    \begin{macrocode}
+      {\ifhit@bachelor\rmfamily\else\csname hit@toc@font\endcsname\fi\heiti #1}
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak{\normalfont\normalcolor #2}\par
       \penalty\@highpenalty
@@ -2893,7 +2941,7 @@ delim_1 "\\hspace*{\\fill}"
 \let\onlinecite\inlinecite
 \renewenvironment{thebibliography}[1]{%
 % \changes{v2.0.6a}{20181220}(添加开题/中期报告，参考文献使用section层级，并且不另起新页) _added by t
-%    \begin{macrocode}
+% \begin{macrocode}
   \ifhit@kaiti
   \section{\bibname}[\hit@bibname@etitle]
   \else
@@ -2903,7 +2951,7 @@ delim_1 "\\hspace*{\\fill}"
   \ifhit@openright\cleardoublepage\else\clearpage\fi\phantomsection%
   \hit@appendix@chapter*{\bibname}[\hit@bibname@etitle]
   \fi \fi
-%    \end{macrocode}
+% \end{macrocode}
   \normalsize
   \list{\@biblabel{\@arabic\c@enumiv}}%
   {\renewcommand{\makelabel}[1]{##1\hfill}
@@ -2916,6 +2964,10 @@ delim_1 "\\hspace*{\\fill}"
     \let\p@enumiv\@empty
   \renewcommand\theenumiv{\@arabic\c@enumiv}}%
   \sloppy\frenchspacing
+%    \end{macrocode}
+% \changes{v2.0.7}{2019/03/02}{添加flushbottom到thebibliography环境中}
+%    \begin{macrocode}
+  \flushbottom
 %    \end{macrocode}
 % \changes{v2.0.3}{2018/10/08}{添加参考文献分割开关}
 %    \begin{macrocode}

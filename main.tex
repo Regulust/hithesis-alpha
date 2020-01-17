@@ -1,10 +1,12 @@
 % !Mode:: "TeX:UTF-8"
 %hithesis-alpha 用来测试添加开题/中期报告功能，非正式
 %\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=true,absupper=true,fontset=windowsnew,type=doctor]{hithesis}
-%\newcommand{\customheader}{testtest}
-\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=false,absupper=true,noheader=false,stage=kaiti,type=master]{hithesis}
+%\newcommand{\customheader}{自定义页眉}	
+%在这里自定义页眉文字（此命令需在最前），并在documentclass中设置headersetting=customizeheader	_modified by hithesis-alpha
+\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=false,absupper=true,stage=kaiti,type=master]{hithesis}
 
-%%开题去掉右翻页设置，openright=right改为false，大论文需改回来 _t
+%%开题/中期等报告无右翻页问题，需设置openright=false，大论文时需参照原hithesis说明自行设置（一般博士论文在双面打印才需要设置右翻页） 
+%%如果改回大论文模板编译出现makecover错误，记得在下面修改回原模板的封面文件哦\input{front/cover}		_modified by hithesis-alpha:
 % 此处选项中不要有空格
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 必填选项
@@ -76,12 +78,16 @@
 %       含义：参考文献每一个条目内能不能断页，应广大刀客要求添加。默认否。
 % newtxmath=true|false
 %       含义：数学字体是否使用新罗马。默认是。
+
+%% _modified by hithesis-alpha:
 %%开题/中期报告需修改：
 %		首先依然正常选择type=doctor/master/bachelor
-%stage=kaiti,zhongqi
-%		含义：开题报告或中期报告时选填，需放在type项前，去掉该项缺省为false本硕博毕业论文格式。
-%noheader=true,
-%		含义：全局“没有页眉”选项，某些老师可能要求开题、中期报告没有页眉，去掉该项缺省为false，页眉正常显示，如果在bachelor下使用，优先级高于bsheadrule。
+%stage=kaiti/zhongqi
+%		含义：开题报告或中期报告时选填，需放在type项前，去掉该项缺省为false本硕博毕业论文格式（去掉该项若makecover报错，请在下方切换封面页->\input{front/cover}，）。
+%headersetting=noheader/customizeheader
+%		含义：自定义页眉选项(合并原noheader选项)，删除该项default默认自动显示；
+%				选择noheader：全局“没有页眉”，某些老师可能要求开题、中期报告没有页眉，如果在bachelor下使用，优先级高于bsheadrule；
+%				选择customize：自定义页眉文字，需在文件开头填写自定义文字\newcommand{\customheader}{自定义页眉}，可灵活用于综合考评、实验报告等其它场景。
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fancyhf{}
 \usepackage{hithesis}

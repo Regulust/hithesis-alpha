@@ -968,13 +968,22 @@
   \hit@doctorfalse
   \expandafter\csname hit@#1true\endcsname}
 %    \end{macrocode}
-%	定义stage项，区分开题、中期，默认false，为毕业论文，empty为空-去掉页眉 _added by t
+%	定义stage项，区分开题、中期，默认default为毕业论文 _modified by hithesis-alpha
 %    \begin{macrocode}
 \newif\ifhit@kaiti
 \newif\ifhit@zhongqi
 \define@key{hit}{stage}{%
   \hit@kaitifalse
   \hit@zhongqifalse
+  \expandafter\csname hit@#1true\endcsname}
+%    \end{macrocode}
+%	定义headersetting项，配置noheader和customize，默认default为正常自动匹配显示 _modified by hithesis-alpha
+%    \begin{macrocode}
+\newif\ifhit@noheader
+\newif\ifhit@customizeheader
+\define@key{hit}{headersetting}{%
+  \hit@noheaderfalse
+  \hit@customizeheaderfalse
   \expandafter\csname hit@#1true\endcsname}
 %    \end{macrocode}
 %    设置版芯，由于窝工版芯歧义。
@@ -1072,10 +1081,10 @@
 %    \end{macrocode}
 % 声明字体选项。
 %    \begin{macrocode}
-\DeclareBoolOption[false]{customheadfancy}
-%	添加customheadfancy项，可以用来自定义页眉，默认false，暂时无用  _added by t
-\DeclareBoolOption[false]{noheader}
-%	添加noheader项，true时可以用来去掉页眉(开题、中期报告老师可能不让留页眉)，默认false，保留页眉  _added by t
+%\DeclareBoolOption[false]{noheader}
+%	添加noheader项，true时可以用来去掉页眉(开题、中期报告老师可能不让留页眉)，默认false，保留页眉；已弃用，2.0.6.2a合并入headersetting  _modified by hithesis-alpha
+%\DeclareBoolOption[false]{customizeheader}
+%	添加customizeheader项，可以用来自定义页眉文字，默认false；已弃用，2.0.6.2a合并入headersetting _modified by hithesis-alpha
 \DeclareStringOption{fontset}
 %    \end{macrocode}
 % 将其余选项默认传递给 \pkg{ctexbook}。
@@ -1537,68 +1546,76 @@ delim_1 "\\hspace*{\\fill}"
 \fancypagestyle{hit@headings}{%
   \fancyhf{}
   \ifhit@doctor
-	  \ifhit@kaiti	%页眉判断-开题 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
-	  \ifhit@zhongqi	%页眉判断-中期 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
+	\ifhit@kaiti	%页眉判断-开题 _modified by hithesis-alpha
+	\fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+	\else
+	\ifhit@zhongqi	%页眉判断-中期 _modified by hithesis-alpha
+	\fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+	\else
   \fancyhead[CO]{\songti\xiaowu[0]\leftmark}
   \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}%
-	  \fi
-	  \fi
+	\fi
+	\fi
   \fi
   \ifhit@master
-	  \ifhit@kaiti	%页眉判断-开题 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
-	  \ifhit@zhongqi	%页眉判断-中期 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
+	\ifhit@kaiti	%页眉判断-开题 _modified by hithesis-alpha
+	\fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+	\else
+	\ifhit@zhongqi	%页眉判断-中期 _modified by hithesis-alpha
+	\fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+	\else
   \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
-  	  \fi
-  	  \fi
+	\fi
+	\fi
   \fi
   \ifhit@bachelor
-	  \ifhit@kaiti	%页眉判断-开题 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
-	  \else
-	  \ifhit@zhongqi	%页眉判断-中期 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
-	  \else
+	\ifhit@kaiti	%页眉判断-开题 _modified by hithesis-alpha
+	\fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
+	\else
+	\ifhit@zhongqi	%页眉判断-中期 _modified by hithesis-alpha
+	\fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
+	\else
   \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
-      \fi
-      \fi
-  \fancyfoot[C]{\xiaowu\if@mainmatter\ifhit@bsmainpagenumberline-~\thepage~-\else\thepage\fi\else\ifhit@bsfrontpagenumberline-~\thepage~-\else\thepage\fi\fi}
-	  \ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉，此处优先级高于bsheadrule	_added by t
-	  \fancyhf{}
-	  \renewcommand{\headrulewidth}{0pt}
-	  \else
-	  \ifhit@bsheadrule
-	  \renewcommand{\headrule}{
-	  \vskip 1.190132pt
-	  \hrule\@height2.276208pt\@width\headwidth
-	  \vskip 0.75pt
-	  \hrule\@height.75pt\@width\headwidth
-	  }
-	  \else
-	  \renewcommand{\headrulewidth}{0pt}
-	  \fi
-	  \fi
-     \else
-	 \ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉	_added by t
-     \fancyhf{}
-	 \renewcommand{\headrulewidth}{0pt}
-	 \else
-	 \renewcommand{\headrule}{
-	 \vskip 1.190132pt
-	 \hrule\@height2.276208pt\@width\headwidth
-	 \vskip 0.75pt
-	 \hrule\@height.75pt\@width\headwidth
-	 }
-	 \fi
-	 \fi
-  \fancyfoot[C]{\xiaowu-~\thepage~-}
+	\fi
+	\fi
+	\ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉，此处为bachelor控制域优先级高于bsheadrule	_modified by hithesis-alpha
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\else
+	\ifhit@bsheadrule
+	\renewcommand{\headrule}{
+	\vskip 1.190132pt
+	\hrule\@height2.276208pt\@width\headwidth
+	\vskip 0.75pt
+	\hrule\@height.75pt\@width\headwidth
+	}
+	\else
+	\renewcommand{\headrulewidth}{0pt}
+	\fi
+	\fi
+	\fancyfoot[C]{\xiaowu\if@mainmatter\ifhit@bsmainpagenumberline-~\thepage~-\else\thepage\fi\else\ifhit@bsfrontpagenumberline-~\thepage~-\else\thepage\fi\fi}	%fancyfoot命令位置调整到nonheader判断之后(因为\fancyhf{}也会清空页脚设置)，修正noheader=true之后导致页码消失的逻辑bug  _modified by hithesis-alpha
+  \else
+	\ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉，此处为master和doctor控制域	_modified by hithesis-alpha 191212
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\else
+	\renewcommand{\headrule}{
+	\vskip 1.190132pt
+	\hrule\@height2.276208pt\@width\headwidth
+	\vskip 0.75pt
+	\hrule\@height.75pt\@width\headwidth
+	}
+	\fi
+	\fancyfoot[C]{\xiaowu-~\thepage~-}	%fancyfoot命令位置调整到nonheader判断之后(因为\fancyhf{}也会清空页脚设置)，修正noheader=true之后导致页码消失的逻辑bug	_modified by hithesis-alpha 191212
+  \fi
+ 
+ % 添加自定义页眉文字代码 _modified by hithesis-alpha 191212 
+ % \begin{macrocode}
+  \ifhit@customizeheader
+	\fancyhead[C]{\songti\xiaowu[0]\customheader}%
+  \fi
+ % \end{macrocode}
+
 
   % 此处可能和word模板不一致
   % 页眉中小五汉字，0行距时，占用9bt，页眉高度为14pt, 所以以下数字之和要保持等于14pt-9bt=4.96634pt
@@ -1832,7 +1849,7 @@ delim_1 "\\hspace*{\\fill}"
 %    图表名称及格式。
 %    \changes{v1.0.8}{2017/11/5}{删除冗余公式符号定义}
 %    \begin{macrocode}
-% \changes{v2.0.6.1a}{20181221}{修改调整图表编号，添加判断，在开题/中期时，使图表编号为 section-1的格式，而非chapter-1} % _added by t
+% \changes{v2.0.6.1a}{20181221}{修改调整图表编号，添加判断，在开题/中期时，使图表编号为 section-1的格式，而非chapter-1} % _modified by hithesis-alpha
 % \begin{macrocode}
 \ifhit@kaiti
 \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}%使图编号为 7-1 的格式 
@@ -2251,13 +2268,13 @@ delim_1 "\\hspace*{\\fill}"
 \gdef\hit@edegree{\hit@exuewei \ of \hit@exueke}
 \def\hit@cauthortitle{\hit@cxueweishort 士研究生}
 \fi
-\def\hit@kaiti@stageheader{开题报告}% 新定义页眉开题字段  _added by t
-\def\hit@zhongqi@stageheader{中期报告}	% 新定义页眉中期字段  _added by t
+\def\hit@kaiti@stageheader{开题报告}% 新定义页眉开题字段  _modified by hithesis-alpha
+\def\hit@zhongqi@stageheader{中期报告}	% 新定义页眉中期字段  _modified by hithesis-alpha
 \ifhit@kaiti
-\gdef\hit@stagestatus{开题报告}% 定义stagestatus字段  _added by t
+\gdef\hit@stagestatus{开题报告}% 定义stagestatus字段  _modified by hithesis-alpha
 \fi
 \ifhit@zhongqi
-\gdef\hit@stagestatus{中期报告}% 定义stagestatus字段  _added by t
+\gdef\hit@stagestatus{中期报告}% 定义stagestatus字段  _modified by hithesis-alpha
 \fi
 \def\hit@bachelor@cxuewei{本科}
 \def\hit@bachelor@cthesisname{毕业设计（论文）}
@@ -2351,8 +2368,8 @@ delim_1 "\\hspace*{\\fill}"
 \def\hit@report@titlepage{% 定义新titlepage，区分开题/中期报告中，本科和研究生不同封面
 	\ifhit@bachelor\hit@report@titlepage@bachelor\else\hit@report@titlepage@graduate\fi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 封面代码改编自 https://github.com/dustincys/PlutoThesisProposal _added by t
-% 开题/中期报告封面—研究生 _added by t
+% 封面代码改编自 https://github.com/dustincys/PlutoThesisProposal _modified by hithesis-alpha
+% 开题/中期报告封面—研究生 _modified by hithesis-alpha
 \newcommand{\hit@report@titlepage@graduate}{
 	\thispagestyle{empty}
 	\zihao{-2}\vspace*{10mm}
@@ -2382,7 +2399,7 @@ delim_1 "\\hspace*{\\fill}"
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 目前和标准模板还有些许区别，“题目”两个字与题目的内容一同居中，而学校模板是题目两个字位置固定，而题目内容单独居中。 
-%% 开题/中期报告封面—本科生 _added by t
+%% 开题/中期报告封面—本科生 _modified by hithesis-alpha
 \newcommand{\hit@report@titlepage@bachelor}{
 	\thispagestyle{empty}
 	\zihao{-2}\vspace*{10mm}
@@ -2411,7 +2428,7 @@ delim_1 "\\hspace*{\\fill}"
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 目前本科生开题/中期报告封面，和教务处模板还有区别，主要表现在题目等间距不同，底部“哈尔滨工业大学教务处制”无法设置隶
-%% 书字体(虽然ctex-fontset-siyuan.def 定义了\lishu 命令，但使用报错，暂无精力调试)。 _added by t
+%% 书字体(虽然ctex-fontset-siyuan.def 定义了\lishu 命令，但使用报错，暂无精力调试)。 _modified by hithesis-alpha
 
 \newcommand{\hit@first@titlepage@bachelor}{
 \ifthenelse%
@@ -2583,28 +2600,28 @@ delim_1 "\\hspace*{\\fill}"
   \end{center}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 添加开题、中期报告封面判断样式 _added by t
+%% 添加开题、中期报告封面判断样式 _modified by hithesis-alpha
 \ifhit@kaiti
 \def\makecover{
-\begin{titlepage}	% 测试自定义的开题封面样式 _added by t 
+\begin{titlepage}	% 测试自定义的开题封面样式 _modified by hithesis-alpha 
 	\hit@report@titlepage
 \end{titlepage}
 }
 \renewcommand\thesection{\arabic {section}.}
-\renewcommand\thesubsection{\thesection \arabic {subsection}}	% 	此处去除chapter继承编号，开题/中期报告只有section _added by t
+\renewcommand\thesubsection{\thesection \arabic {subsection}}	% 	此处去除chapter继承编号，开题/中期报告只有section _modified by hithesis-alpha
 \setcounter{page}{0}	% 重置页数计数器，使目录页页码从1开始
 \else
 \ifhit@zhongqi
 \def\makecover{
-	\begin{titlepage}	% 测试自定义的开题封面样式 _added by t 
+	\begin{titlepage}	% 测试自定义的开题封面样式 _modified by hithesis-alpha 
 		\hit@report@titlepage
 	\end{titlepage}
 }
 \renewcommand\thesection{\arabic {section}.}
-\renewcommand\thesubsection{\thesection \arabic {subsection}}	% 	此处去除chapter继承编号，开题/中期报告只有section _added by t
-\setcounter{page}{0}	% 重置页数计数器，使目录页页码从1开始 _added by t
+\renewcommand\thesubsection{\thesection \arabic {subsection}}	% 	此处去除chapter继承编号，开题/中期报告只有section _modified by hithesis-alpha
+\setcounter{page}{0}	% 重置页数计数器，使目录页页码从1开始 _modified by hithesis-alpha
 \else
-%% 下为原正常论文封面 _added by t
+%% 下为原正常论文封面 _modified by hithesis-alpha
 \def\makecover{
   \phantomsection
   \pdfbookmark[0]{\hit@ctitle}{ctitle}
@@ -2892,7 +2909,7 @@ delim_1 "\\hspace*{\\fill}"
 \def\@inlinecite#1{\begingroup\citestyle{inline}\let\@cite\NAT@citenum\citep{#1}\endgroup}
 \let\onlinecite\inlinecite
 \renewenvironment{thebibliography}[1]{%
-% \changes{v2.0.6a}{20181220}(添加开题/中期报告，参考文献使用section层级，并且不另起新页) _added by t
+% \changes{v2.0.6a}{20181220}(添加开题/中期报告，参考文献使用section层级，并且不另起新页) _modified by hithesis-alpha
 %    \begin{macrocode}
   \ifhit@kaiti
   \section{\bibname}[\hit@bibname@etitle]

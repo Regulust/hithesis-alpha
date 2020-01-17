@@ -2,6 +2,19 @@
 # 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式)
 
 **update:**
+*v2.0.6.2a 20191212*
+- 改动位置注释修改为 *_modified by hithesis-alpha*
+- 修复在 noheader=true,stage=bachelor 时，页码与原hithesis项目设置(bsfrontpagenumberline、bsmainpagenumberline项)不一致的问题（调整了\fancyfoot的位置）；
+- \documentclass中新增页眉设置 headersetting选项（合并原noheader选项）：
+删除该项default默认自动显示页眉；
+`headersetting=noheader`：全局“没有页眉”，某些老师可能要求开题、中期报告没有页眉，若在bachelor下使用，优先级高于bsheadrule；
+`headersetting=customizeheader`：自定义页眉文字，在文件开头填写自定义文字\newcommand{\customheader}{自定义页眉}，该功能结合下文中的“变通方法”，hithesis-alpha可灵活用于综合考评、实验报告等许多其它场景。
+
+*Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，最新版本更新了关于版芯等设置*
+
+***Happy LaTeXing!***
+
+**update:**
 *v2.0.6.1a 20181221*
 
 - 修改调整图表编号设置
@@ -23,16 +36,16 @@
 - 基本使用方法与原来hithesis一致
 先执行```latex hithesis.ins```(macOS/Linux) ```lualatex hithesis.ins```(Windows，未测试)，然后在主文档中正常选择学位类型 ```type=doctor/master/bachelor```
 - 选择```stage=kaiti,zhongqi```
-如需使用开题/中期报告时选填(需放在type项前)，去掉该项缺省为false，即为原来hithesisd的本硕博毕业论文格式。
-- 选择```noheader=true```,
-添加全局“没有页眉”选项，某些老师可能要求开题、中期报告没有页眉，去掉该项缺省为false，页眉正常显示，如果在bachelor下使用，优先级高于bsheadrule。
+如需使用开题/中期报告时选填(需放在type项前)，去掉该项缺省为false，即为原来hithesisd的本硕博毕业论文格式(切换原模板时若makecover报错，请注意在main.tex中切换封面文件 -> \input{front/cover})。
+- ~~选择```noheader=true```,
+添加全局“没有页眉”选项，某些老师可能要求开题、中期报告没有页眉，去掉该项缺省为false，页眉正常显示，如果在bachelor下使用，优先级高于bsheadrule。~~ **v2.0.6.2a 已经合并入headersetting选项**
 
 ## 修改说明
 #### 选项
 - 添加选项 ```stage=kaiti,zhongqi```
-使用开题/中期报告时选填(需放在type项前)，去掉该项缺省为false，即为原来hithesisd的本硕博毕业论文格式。
-- 添加选项 ```noheader=true,false```
-添加全局“没有页眉”选项，某些老师可能要求开题、中期报告没有页眉，去掉该项缺省为false，页眉正常显示，如果在bachelor下使用，优先级高于bsheadrule。
+使用开题/中期报告时选填(需放在type项前)，去掉该项缺省为false，即为原来hithesis的本硕博毕业论文格式。
+- ~~添加选项~~  ```noheader=true,false```
+ ~~添加全局“没有页眉”选项，某些老师可能要求开题、中期报告没有页眉，去掉该项缺省为false，页眉正常显示，如果在bachelor下使用，优先级高于bsheadrule~~。   **v2.0.6.2a 已经合并入headersetting选项(`headersetting=noheader/customizeheader`)**
 - 新建插入自定义宏包/命令文档custom_definition
 有些专业需用到特殊的宏包，以及自己码文时自定义一些方便的快捷命令，可以统一放在./front/custom_definition.tex中
 
@@ -50,7 +63,7 @@
 - 在文献环境{thebibliography}处添加开题/中期判断
 在使用开题/中期报告模式下，若需要参考文献，将参考文献部分改为为带标号的section层级，但需要将参考文献```\bibliography{reference}```添加到body文档中，并注释掉主文档的该行，否则会另起新页。
 
-\* *修改、添加的位置暂时以 "_added by t"注明，原本方便自己查找纠错，暂未更新到原hithesis的注释样式。*
+\* *修改、添加的位置暂时以 "_added by t"注明，原本方便自己查找纠错，暂未更新到原hithesis的注释样式。-> v2.0.6.2a 改为"_modified by hithesis-alpha"*
 
 
 ## 问题及变通
@@ -67,7 +80,7 @@
 首先，自行下载并填写学校word模板封面页，然后生成pdf文件，放入front文件夹，命名为report_cover.pdf，使用
 ```\includepdfmerge{front/report_cover.pdf}	``` 命令手动插入该pdf封面，并注释掉下面```\input{front/reportcover}```  及 ```\makecover``` 两行。
 
-*\* 该方法同样适用于综合考评等其它报告场景。*
+*\* 该变通方法可灵活适用于综合考评、实验报告等其它报告场景。*
 
 附：
 

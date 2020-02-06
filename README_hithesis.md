@@ -1,7 +1,7 @@
 # hithesis
 # 哈尔滨工业大学LaTeX论文模板
 
-***原hithesis的README。***
+***原hithesis的README (20200109update)***
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">hithesis</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/dustincys/hithesis" property="cc:attributionName" rel="cc:attributionURL">https://github.com/dustincys/hithesis</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/dustincys/hithesis" rel="dct:source">https://github.com/dustincys/hithesis</a>上的作品创作。
 
@@ -22,14 +22,13 @@ http://www.latex-project.org/lppl.txt
 and version 1.3a or later is part of all distributions of LaTeX
 version 2004/10/01 or later.
 
-
 ## hithesis是什么？
 
 hithesis
 旨在建立一个简单易用的哈尔滨工业大学学位论文LaTeX模板，包括本科论文、硕士论文、博士论文
 。现 在支持本科、硕士、博士论文，对其它格式的支持会陆续加入。
 hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis
-"CTAN")中，用户安装TeXLive将自带我工模板（版本日期>2017.08.28）。
+"CTAN**)中，用户安装TeXLive将自带我工模板（版本日期>2017.08.28）。
 
 ## 我工规范有歧义之处
 
@@ -44,13 +43,12 @@ hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis
 ### 呆萌的操作，傲娇的效果
 
 - 极限程度实现了[《哈尔滨工业大学研究生学位论文撰写规范》](http://hitgs.hit.edu.cn/aa/fd/c3425a109309/page.htm)、[《哈尔滨工业大学本科生毕业论文撰写规范》](http://jwc.hit.edu.cn/2566/list.htm)
-- 这是[PlutoThesis](https://github.com/dustincys/PlutoThesis "PlutoThesis")的终极进化，PlutoThesis废弃不再维护。
+- 这是[PlutoThesis](https://github.com/dustincys/PlutoThesis "PlutoThesis**)的终极进化，PlutoThesis废弃不再维护。
  - 更傻更简单的选项，例如论文主文件，只需要在文档类的括号中填写本硕博选项，字体选项（设置弹性间距或者刚性间距），文科生选项（目录可以设成四级目录），非全日制类型等，轻松设定目标格式。
  - 自适应格式，例如图题和标题，标题字号在字数超过两行时自动由五号变小五号，实现自适应（硕博规范规定，字数多时用五号）
  - 自动化中英文索引（博士规范要求，有需要时候添加）
- - 图书馆提交论文级的书签设置
+ - 图书馆提交论文级的电子版
  - ……
-
 
 ### 矫正PlutoThesis的不足
 
@@ -77,7 +75,7 @@ hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis
 
  - 行间距、段前后距离设置精确到小数后四位， 例如 1bp = 1.00374pt，1mm = 2.84526pt， 按照我工之要求, 行距在3mm～4mm之间，换算之后为20.50398～23.33863bp，严格符合规范要求，哪怕是显微镜级别
  - 规范明确规定，数字间空格要求为汉字宽度的四分之一（形式类似与 12 2345 和 0.123 456 这样多于3位以上的整数或小数）。默认情况下在LaTeX中任何人工输入的空格均不正确（“\:”为4/18汉字宽度，“\;”为5/18汉字宽度，所以PlutoThesis中的数字间宽度错误)。hithesis模板中定义了精准的数字间宽度。
- - 重写了一堆重要函数，例如章节标题由原来的`BiChapter{}{}`方式进化为`chapter{}[]`，极大简化，后面方括号中为可选括号，硕本可以不用，用了自动忽略
+ - 重写了一堆重要函数，例如章节标题由原来的`BiChapter{}{}`方式进化为`chapter{}[**`，极大简化，后面方括号中为可选括号，硕本可以不用，用了自动忽略
  - 严格符合（满足）两个规范要求，由于规范中有矛盾之处，例如本科生的标题段前距离有两处不一样的规定，刚性行距尽量满足行数（要求约33行）要求。
  - 规范中给出了行距区间，为了规格严格，设置了弹性行距
  - ……
@@ -105,9 +103,23 @@ CTAN的版本一般会比较落后，但在每年年底会同步为最新版本�
 
 ### 关于hithesis的线上讨论区
 
-由于维护者（就是本书呆）已经是高龄不毕业刀客，课题繁忙，常常无法及时回答疑问。
-为了解决使用中遇到的问题，请各位刀客和大侠加入QQ群：259959600。
-群里有很多热心的LaTeX隐士高人如@poofee等，很乐于解答。
+~~由于维护者（就是本书呆）已经是高龄不毕业刀客，课题繁忙，常常无法及时回答疑问。~~
+为了解决使用中遇到的问题，请各位刀客和大侠加入QQ群hithesis讨论区：259959600。
+如要和作者聊聊，请先看[hithesis的“昨天今天和明天”](https://yanshuo.name/cn/2020/01/hithesis/)。
+
+hithesis 高级群：476262502 （高级群为作者散布高级排版、制图、Linux管理、编码等
+知识和技术之所在，其要旨引用自《西游记》第八回，如来自言“叵耐不识我法门之要旨，
+怠慢了瑜伽之正宗”，以及“曹溪路险、鹫岭云深，故人不音杳！”。散布知识之后，作者将
+直播回答高级群中众生问题。（**由于工作关系直播暂停，开播时间待定**））。
+
+21 Oct 2019　添加：由于工作繁忙，改为西瓜小视频形式传播正能量（**包括Linux实用技术、
+排版、制图等等平时积累的经验和知识**）。
+
+西瓜视频ID：**石见石页**
+
+网址：https://www.ixigua.com/home/105143356290/
+
+hithesis群里有很多热心的LaTeX隐士高人如@poofee等，很乐于解答。
 
 ### 关于查重
 
@@ -117,14 +129,20 @@ CTAN的版本一般会比较落后，但在每年年底会同步为最新版本�
 会出现无法正常复制的情况（可能是系统的字体映射出现了误差）。一般需要在主文件的
 选项中明确声明使用哪一种fontset。
 
-### 模板的编译方法、打印版、电子版及其他说明
+### 模板版本要求
 
-- 生成论文格式文件(第一步要生成 *.cls，*.cfg，*.ist，然后再生成论文)
+LaTeX 中的ctex package版本要求：
+
+	ctex >= v2.4.3 (2016年9月份发布)
 
 注意，如果下载最新版本（>= 2018）的texlive或Miktex或Mactex，如果使用自带的模板，可能会出现一些错误，因为自带的版本老。
 查看自带版本的命令是
 
-		texdoc hithesis
+	texdoc hithesis
+
+### 模板的编译方法
+
+1. 生成论文格式文件(第一步要生成 *.cls，*.cfg，*.ist，然后再生成论文)
 
    - 如果是Linux/Mac执行 （此处作者没测试过Mac，如遇到问题到谈论区可以问一下热心刀客大侠们，比如陈登泰教授、郭大侠等）
 	
@@ -134,60 +152,66 @@ CTAN的版本一般会比较落后，但在每年年底会同步为最新版本�
 	
 			lualatex hithesis.ins
 
+   - 如果喜欢玩 make
 
-- 生成论文
+			make cls
 
-		xelatex main.tex
-		bibtex main
-		xelatex main.tex
-		xelatex main.tex
-		splitindex main -- -s hithesis.ist  # 自动生成索引
-		xelatex main.tex
+2. 生成论文的方式
 
-- 生成文档
+   - 手动狙击（源文件更改后每次编译逐行命令输入一轮）
 
-		xelatex hithesis.dtx
-		makeindex -s gind.ist -o hithesis.ind hithesis.idx
-		makeindex -s gglo.ist -o hithesis.gls hithesis.glo
-		xelatex hithesis.dtx
-		xelatex hithesis.dtx
+            xelatex －shell-escape main.tex
+            bibtex main
+            xelatex －shell-escape main.tex
+            xelatex －shell-escape main.tex
+            splitindex main -- -s hithesis.ist  # 自动生成索引
+            xelatex －shell-escape main.tex
+            
+   - 半自动精确射击（源文件更改后每次编译敲一次）
 
-如果喜欢Makefile的是另一画风：
+            make thesis
 
-- 生成文档类
+   - 全自动火力覆盖（只需要输入一次命令，源文件更改后自动识别更改自动编译）
 
-		make cls
+            latexmk
 
-- 生成论文
+3. 生成文档（没什么用，因为有文档也基本没人看）
 
-		make thesis
+   - 手动狙击（逐行命令输入一轮）
 
-- 生成文档
+            xelatex hithesis.dtx
+            makeindex -s gind.ist -o hithesis.ind hithesis.idx
+            makeindex -s gglo.ist -o hithesis.gls hithesis.glo
+            xelatex hithesis.dtx
+            xelatex hithesis.dtx
 
-		make doc
+   - 半自动精确射击（编译敲一次）
 
-LaTeX 中的ctex package版本要求：
+            make doc
 
-	ctex >= v2.4.3 (2016年9月份发布)
+### 打印版、电子版
 
-注意，一般情况下，博士论文的打印版要求右翻页，最后向图书管提交的电子版不是右翻
-页，注意选项中的选项。
+注意，一般情况下，博士论文的打印版要求双面打印，本硕单面。
+博士论文在双面打印成册时，规范中没有明确规定是否要右翻页（右翻页是每一章的起始位
+置位于书的右侧页面），所以会出现DIY（或身不由己DIY）哪一处右翻页。
+`openright`选项设置为真时，会将所有章（即所有部分，包括前文和后文）起始设置成右翻页。
+如果想DIY（或身不由己DIY）在什么地方右翻页，将这个选项设置为false，然后在目标位
+置添加`\cleardoublepage`命令即可。
+
+最后向图书管提交的电子版不是右翻页且要求没有任何空白页，这时只需要设置选项`library=true`
+即可，这时候会强制`openright=false`。然后什么都不用做，就会出现如同`Sirius`同学
+的这种“书签还没整明白，论文居然已经通过了”的情况。
+
+### 幻灯片
+
+有些强迫症刀客喜欢用Beamer，推荐[progressbar主题](https://github.com/dustincys/progressbar)，
+能够使用[pympress](https://github.com/Cimbali/pympress)播放双屏提示。
+
+### 其他说明
 
 由于维护者（就是本书呆）已经是高龄不毕业博士，课题繁忙，实在无空余时间再写详细文档以及 无偿解决一些用户要求（例如前面文档中[已经解决的算法格式各实验室要求不一致](https://github.com/dustincys/PlutoThesis#%E6%B2%A1%E6%9C%89%E6%98%8E%E7%A1%AE%E8%A6%81%E6%B1%82%E7%9A%84%E6%A0%BC%E5%BC%8F)问题）。
 
 各位刀客和大侠如用的嗨，要解囊相助，请微信扫码～～
-
-![5](http://wx4.sinaimg.cn/large/61dccbaaly1fge32sbb32j20my0uz3zt.jpg "谢谢")
-
-如果用的非常嗨，
-
-![10](http://wx4.sinaimg.cn/large/61dccbaaly1fge32tuvvsj20my0uzabc.jpg "谢谢")
-
-那个，看在苦X高龄不毕业博士，还熬夜写代码的份上…… 唉……
-
-![1](http://wx4.sinaimg.cn/large/61dccbaaly1fge32qrvgij20my0uzjso.jpg "谢谢")
-
-或者随便吧……
 
 ![wechat](http://wx2.sinaimg.cn/large/61dccbaaly1fqwvz6sd4ej20yi1au797.jpg "谢谢")
 
@@ -199,3 +223,4 @@ LaTeX 中的ctex package版本要求：
 - ~~学校教务处和研究生院只提供了规范，并没有提供官方的任何模板（包括word），所以~~ 学校教务处和研究生院提供了规范和[研究生word模板](http://hitgs.hit.edu.cn/ab/1f/c3425a109343/page.htm)以及[本科生word模板](http://jwc.hit.edu.cn/2566/list.htm)(厉害了word哥……)，此模板仅为规范的参考实现，不保证格式审查老师不提意见。任何由于使用本模板而引起的论文格式审查问题均与本模板作者无关
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">hithesis</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/dustincys/hithesis" property="cc:attributionName" rel="cc:attributionURL">https://github.com/dustincys/hithesis</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/dustincys/hithesis" rel="dct:source">https://github.com/dustincys/hithesis</a>上的作品创作。
+

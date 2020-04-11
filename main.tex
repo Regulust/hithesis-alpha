@@ -3,7 +3,7 @@
 %\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=true,absupper=true,fontset=windowsnew,type=doctor]{hithesis}
 %\newcommand{\customheader}{自定义页眉}  
 %在这里自定义页眉文字（此命令需在最前），并在documentclass中设置headersetting=customizeheader _modified by hithesis-alpha
-\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=false,absupper=true,stage=zhongqi,type=master]{hithesis}
+\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=false,absupper=true,type=master,stage=zhongqi]{hithesis}
 
 %%开题/中期等报告无右翻页问题，需设置openright=false，大论文时需参照原hithesis说明自行设置（一般博士论文在双面打印才需要设置右翻页） 
 %%如果改回大论文模板编译出现makecover错误，记得在下面修改回原模板的封面文件哦\input{front/cover}      _modified by hithesis-alpha:
@@ -106,7 +106,7 @@
 %如果自动生成封面不满足需要，可以自行填写学校word模板封面，生成pdf文件，放入front文件夹，手动插入该pdf封面，并手动注释掉下面\input{front/reportcover}  及 \makecover 两行。
 \input{front/reportcover} % 开题/中期封面
 %\input{front/cover} % 毕业论文封面
-\makecover	%若maketitle报错，可在上面两行切换论文封面文件
+\makecover	%若maketitle报错，可在上面两行切换对应的封面文件
 %\input{front/denotation}%物理量名称表,符合规范为主，有要求添加
 %\cleardoublepage  %自定义在什么位置进行右翻页
 \tableofcontents    % 中文目录,有些专业研究生开题要求添加目录，中期、本科不要求，以教学秘书发送模板要求为准, 自行添加

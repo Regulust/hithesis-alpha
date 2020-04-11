@@ -1,11 +1,6 @@
 # hithesis-alpha
 # 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式)
-
-
-[TOC]
-
 ---
-
 
 [hithesis-alpha](https://github.com/regulust/hithesis-alpha) 是在原 [hithesis](https://github.com/dustincys/hithesis) (~~v2.0.6 2018/12/05~~ v2.0.11 2019/01/09) 基础上进行的改编尝试，添加了开题/中期样式。添加过程不影响原有的关于毕业论文的设置与功能。
 
@@ -16,7 +11,26 @@
 
 ***Happy LaTeXing!***
 *Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，最新版本更新了关于版芯等设置。*
+
+Table of Contents
+=================
+   * [hithesis-alpha](#hithesis-alpha)
+      * [更新记录](#更新记录)
+      * [使用说明](#使用说明)
+      * [修改说明](#修改说明)
+         * [选项](#选项)
+         * [样式code](#样式code)
+      * [问题及变通](#问题及变通)
+         * [存在的bug问题](#存在的bug问题)
+         * [变通方法](#变通方法)
+      * [致谢及声明](#致谢及声明)
+      * [样式示例](#样式示例)
+
 ## 更新记录
+
+**update:**
+*v2.0.11.1a 20200411*
+- kaiti/zhongqi的图表序号随section重置刷新，详见[issue-comment](https://github.com/Regulust/hithesis-alpha/issues/1#issuecomment-590268378)。
 
 **update:**
 *v2.0.11.0a 20200205*
@@ -43,7 +57,7 @@
 
 **Original:**
 *V2.0.6a 20181219*
-版本号命名方式：前三位为hithesis版本号，a表示alpha，若有第4位表示hithesis-alpha迭代。
+版本号命名方式：前三位为hithesis版本号，a表示alpha，若有第4位表示hithesis-alpha的更新修复。
 
 ## 使用说明
 *推荐前往[hithesis](https://github.com/dustincys/hithesis)先阅读原说明或者在终端执行```texdoc hithesis```阅读原说明文档(需已安装TeXLive2017及更新版本)。*

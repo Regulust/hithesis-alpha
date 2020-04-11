@@ -22,7 +22,8 @@
 % \iffalse
 %<*driver>
 %\ProvidesFile{hithesis.dtx}[2018/12/19 2.0.6a Harbin Institute of Technology Thesis Template(add proposal/midterm report)]
-\ProvidesFile{hithesis.dtx}[2019/06/27 2.0.11a Harbin Institute of Technology Thesis Template(add proposal/midterm report)]
+%\ProvidesFile{hithesis.dtx}[2019/06/27 2.0.11a Harbin Institute of Technology Thesis Template(add proposal/midterm report)]
+\ProvidesFile{hithesis.dtx}[2019/04/11 2.0.11.1a Harbin Institute of Technology Thesis Template(add proposal/midterm report)]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -1882,10 +1883,14 @@ delim_1 "\\hspace*{\\fill}"
 % \changes{v2.0.6.1a}{20181221}{修改调整图表编号，添加判断，在开题/中期时，使图表编号为 section-1的格式，而非chapter-1} % _modified by hithesis-alpha
 % \begin{macrocode}
 \ifhit@kaiti
+\numberwithin{figure}{section}%开题模板下，重置计数器关联section
+\numberwithin{table}{section}%开题模板下，重置计数器关联section
 \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}%使图编号为 7-1 的格式 
 \renewcommand{\thetable}{\arabic{section}-\arabic{table}}%使表编号为 7-1 的格式
 \else
 \ifhit@zhongqi
+\numberwithin{figure}{section}%中期模板下，重置计数器关联section
+\numberwithin{table}{section}%中期模板下，重置计数器关联section
 \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}%使图编号为 7-1 的格式 
 \renewcommand{\thetable}{\arabic{section}-\arabic{table}}%使表编号为 7-1 的格式
 \else

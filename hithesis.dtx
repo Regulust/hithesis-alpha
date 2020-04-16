@@ -12,14 +12,18 @@
 % and version 1.3a or later is part of all distributions of LaTeX
 % version 2004/10/01 or later.
 %
-% 2018/12/19 Start a new branch hithesis-alpha by Tan <xz.tan@outlook.com>
+% 2018/12/19 Start a new branch hithesis-alpha by Tan <https://github.com/Regulust>
 % Base on original v2.0.6, creating v2.0.6a 
 % New add proposal/midterm report template.
+% 2020/02/05 Update hithesis-alpha v2.0.11.0a
+% Merge the changes of latest version hithesis v2.0.11
+% 2020/04/16 Update hithesis-alpha v2.1.0.0a by SPC <https://github.com/specialpointcentral>
+% Merge the changes of latest version hithesis v2.1.0
 % \fi
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hithesis.dtx}[2019/06/27 2.0.11 Harbin Institute of Technology Thesis Template]
+\ProvidesFile{hithesis.dtx}[2020/03/07 2.1.0 Harbin Institute of Technology Thesis Template]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -85,10 +89,11 @@
 % \date{v\fileversion\ (\filedate)}
 % \maketitle\thispagestyle{empty}
 % 
+%
 % \begin{abstract}\noindent
 % 该宏包为哈尔滨工业大学本、硕、博毕业论文模板。以后会陆续加入开题、中期、博士后
 % 出站报告等模板。
-% Update: v2.0.6a 添加开题/中期报告模板 by Tan
+% Update: v2.0.6a 添加开题/中期报告模板 https://github.com/Regulust/hithesis-alpha
 % \end{abstract}
 %
 % \vskip2cm
@@ -152,6 +157,11 @@
 % \end{itemize}
 %
 % \note[注意：]{如果登录不了github的同学可以登录oschina下载。}
+%
+% hithesis-alpha 链接：
+% \begin{itemize}
+% \item github: \href{https://github.com/Regulust/hithesis-alpha}
+% \end{itemize}
 %
 % \subsection{模板的组成}
 % 下表列出了 \hithesis\ 的主要文件及其功能介绍：
@@ -764,7 +774,7 @@
 %   year      = 2006,
 %   address   = {西安, 中国},
 %   month     = sep,
-%   language      = "zh",
+%   language  = "zh",
 % }
 %
 % @ARTICLE{cnarticle,
@@ -774,7 +784,7 @@
 %   PAGES   = "260--266",
 %   VOLUME  = "224",
 %   YEAR    = "1800",
-%   LANGUAGE    = "zh",
+%   LANGUAGE= "zh",
 % }
 % \end{latex}
 %
@@ -945,7 +955,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hithesis}
 %<cfg>\ProvidesFile{hithesis.cfg}
-%<cls|cfg>[2019/06/27 2.0.11 Harbin Institute of Technology Thesis Template]
+%<cls|cfg>[2020/03/07 2.1.0 Harbin Institute of Technology Thesis Template]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -967,13 +977,39 @@
   \hit@doctorfalse
   \expandafter\csname hit@#1true\endcsname}
 %    \end{macrocode}
-%	定义stage项，区分开题、中期，默认false，为毕业论文，empty为空-去掉页眉 _added by t
+%  定义stage项，区分开题、中期，默认default为毕业论文 _modified by hithesis-alpha
 %    \begin{macrocode}
 \newif\ifhit@kaiti
 \newif\ifhit@zhongqi
 \define@key{hit}{stage}{%
   \hit@kaitifalse
   \hit@zhongqifalse
+  \expandafter\csname hit@#1true\endcsname}
+%    \end{macrocode}
+% 此处设置校区，没有明确给出威海或者深圳时候，默认为哈尔滨校区。
+% \changes{v2.0.0}{2018/6/14}{此处添加geometry选项}
+%    \begin{macrocode}
+\newif\ifhit@shenzhen
+\newif\ifhit@weihai
+\newif\ifhit@harbin
+\define@key{hit}{campus}{%
+  \hit@shenzhenfalse
+  \hit@weihaifalse
+  \hit@harbinfalse
+  \expandafter\csname hit@#1true\endcsname}
+\ifhit@weihai\relax\else
+\ifhit@shenzhen\relax\else
+\hit@harbintrue
+\fi
+\fi
+%    \end{macrocode}
+%  定义headersetting项，配置noheader和customize，默认default为正常自动匹配显示 _modified by hithesis-alpha
+%    \begin{macrocode}
+\newif\ifhit@noheader
+\newif\ifhit@customizeheader
+\define@key{hit}{headersetting}{%
+  \hit@noheaderfalse
+  \hit@customizeheaderfalse
   \expandafter\csname hit@#1true\endcsname}
 %    \end{macrocode}
 %    设置版芯，由于窝工版芯歧义。
@@ -1076,10 +1112,10 @@
 %    \end{macrocode}
 % 声明字体选项。
 %    \begin{macrocode}
-\DeclareBoolOption[false]{customheadfancy}
-%	添加customheadfancy项，可以用来自定义页眉，默认false，暂时无用  _added by t
-\DeclareBoolOption[false]{noheader}
-%	添加noheader项，true时可以用来去掉页眉(开题、中期报告老师可能不让留页眉)，默认false，保留页眉  _added by t
+%\DeclareBoolOption[false]{noheader}
+%  添加noheader项，true时可以用来去掉页眉(开题、中期报告老师可能不让留页眉)，默认false，保留页眉；已弃用，2.0.6.2a合并入headersetting  _modified by hithesis-alpha
+%\DeclareBoolOption[false]{customizeheader}
+%  添加customizeheader项，可以用来自定义页眉文字，默认false；已弃用，2.0.6.2a合并入headersetting _modified by hithesis-alpha
 \DeclareStringOption{fontset}
 %    \end{macrocode}
 % 将其余选项默认传递给 \pkg{ctexbook}。
@@ -1166,6 +1202,11 @@
 %    \begin{macrocode}
 \RequirePackage{amsmath}
 %    \end{macrocode}
+% 定理类环境宏包，其中 \pkg{amsmath} 选项用来兼容 \AmSTeX\ 的宏包
+%    \begin{macrocode}
+\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
+\RequirePackage{amssymb}
+%    \end{macrocode}
 % \pkg{newtx} 设置 Times New Roman，Helvetica。
 %    \begin{macrocode}
 \RequirePackage[defaultsups]{newtxtext}
@@ -1217,10 +1258,7 @@
 %    \begin{macrocode}
 \RequirePackage{CJKfntef}
 %    \end{macrocode}
-% 定理类环境宏包，其中 \pkg{amsmath} 选项用来兼容 \AmSTeX\ 的宏包
-%    \begin{macrocode}
-\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
-%    \end{macrocode}
+
 % 表格控制
 %    \begin{macrocode}
 \RequirePackage{longtable}
@@ -1269,36 +1307,36 @@
 %    \changes{v2.0.0}{2018/6/14}{添加版芯设置选项}
 %    \begin{macrocode}
 \ifhit@geometrynewtwo%
-	\geometry{
-	  centering,
-	  text={150true mm,236true mm},
-	  left=30true mm,
-	  head=5true mm,
-	  headsep=2true mm,
-	  footskip=0true mm,
-	  foot=5.2true mm
-	}
+   \geometry{
+     centering,
+     text={150true mm,236true mm},
+     left=30true mm,
+     head=5true mm,
+     headsep=2true mm,
+     footskip=0true mm,
+     foot=5.2true mm
+   }
 \else%
-	\ifhit@geometrynewone%
-		\geometry{
-		  centering,
-		  text={150true mm,240true mm},
-		  left=30true mm,
-		  head=5true mm,
-		  headsep=0true mm,
-		  footskip=0true mm,
-		  foot=0true mm
-		}
-	\else%
-		\geometry{%根据PlutoThesis 原版定义而来
-			text={150true mm,224true mm},
-			top=35.5true mm,
-			left=30true mm,
-			head=5true mm,
-			headsep=2.5true mm,
-			foot=8.5true mm
-		}
-	\fi%
+   \ifhit@geometrynewone%
+      \geometry{
+        centering,
+        text={150true mm,240true mm},
+        left=30true mm,
+        head=5true mm,
+        headsep=0true mm,
+        footskip=0true mm,
+        foot=0true mm
+      }
+   \else%
+      \geometry{%根据PlutoThesis 原版定义而来
+         text={150true mm,224true mm},
+         top=35.5true mm,
+         left=30true mm,
+         head=5true mm,
+         headsep=2.5true mm,
+         foot=8.5true mm
+      }
+   \fi%
 \fi%
 %    \end{macrocode}
 %    载入显示行号的包。
@@ -1556,70 +1594,104 @@ delim_1 "\\hspace*{\\fill}"
 \fancypagestyle{hit@headings}{%
   \fancyhf{}
   \ifhit@doctor
-	  \ifhit@kaiti	%页眉判断-开题 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
-	  \ifhit@zhongqi	%页眉判断-中期 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
-  \fancyhead[CO]{\songti\xiaowu[0]\leftmark}
-  \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}%
-	  \fi
-	  \fi
-  \fi
-
+    \ifhit@kaiti   %页眉判断-开题 _modified by hithesis-alpha
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+    \else
+    \ifhit@zhongqi %页眉判断-中期 _modified by hithesis-alpha
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+    \else
+    \fancyhead[CO]{\songti\xiaowu[0]\leftmark}
+%    \end{macrocode}
+% 添加一校三区的学校名
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+    \ifhit@harbin
+    \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
+    \fi
+    \ifhit@shenzhen
+    \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@shenzhencampus\hit@cdegree\hit@cthesisname}
+    \fi
+    \ifhit@weihai
+    \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@weihaicampus\hit@cdegree\hit@cthesisname}
+    \fi
+    \fi %ifhit@zhongqi
+    \fi %ifhit@kaiti
+  \fi %ifhit@doctor
   \ifhit@master
-	  \ifhit@kaiti	%页眉判断-开题 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
-	  \ifhit@zhongqi	%页眉判断-中期 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
-	  \else
-  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
-  	  \fi
-  	  \fi
+    \ifhit@kaiti   %页眉判断-开题 _modified by hithesis-alpha
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+    \else
+    \ifhit@zhongqi %页眉判断-中期 _modified by hithesis-alpha
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname\hit@stagestatus}
+    \else
+    \ifhit@harbin
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
+    \fi
+    \ifhit@shenzhen
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@shenzhencampus\hit@cdegree\hit@cthesisname}
+    \fi
+    \ifhit@weihai
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@weihaicampus\hit@cdegree\hit@cthesisname}
+    \fi
+    \fi %ifhit@zhongqi
+    \fi %ifhit@kaiti
+  \fi %ifhit@master
+  \ifhit@bachelor
+    \ifhit@kaiti   %页眉判断-开题 _modified by hithesis-alpha
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
+    \else
+    \ifhit@zhongqi %页眉判断-中期 _modified by hithesis-alpha
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
+    \else
+    \ifhit@harbin
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
+    \fi
+    \ifhit@shenzhen
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@shenzhencampus\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
+    \fi
+    \ifhit@weihai
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@weihaicampus\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
+    \fi
+    \fi %ifhit@zhongqi
+    \fi %ifhit@kaiti
+    \ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉，此处为bachelor控制域优先级高于bsheadrule  _modified by hithesis-alpha
+      \fancyhf{}
+      \renewcommand{\headrulewidth}{0pt}
+    \else
+      \ifhit@bsheadrule
+      \renewcommand{\headrule}{
+      \vskip 1.190132pt
+      \hrule\@height2.276208pt\@width\headwidth
+      \vskip 0.75pt
+      \hrule\@height.75pt\@width\headwidth
+      }
+      \else
+      \renewcommand{\headrulewidth}{0pt}
+      \fi
+    \fi
+    \fancyfoot[C]{\xiaowu\if@mainmatter\ifhit@bsmainpagenumberline-~\thepage~-\else\thepage\fi\else\ifhit@bsfrontpagenumberline-~\thepage~-\else\thepage\fi\fi}
+  \else
+    \ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉，此处为master和doctor控制域   _modified by hithesis-alpha 191212
+      \fancyhf{}
+      \renewcommand{\headrulewidth}{0pt}
+    \else
+      \renewcommand{\headrule}{
+      \vskip 1.190132pt
+      \hrule\@height2.276208pt\@width\headwidth
+      \vskip 0.75pt
+      \hrule\@height.75pt\@width\headwidth
+      }
+    \fi
+    \fancyfoot[C]{\xiaowu-~\thepage~-}
   \fi
 
-  \ifhit@bachelor
-	  \ifhit@kaiti	%页眉判断-开题 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
-	  \else
-	  \ifhit@zhongqi	%页眉判断-中期 _added by t
-	  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname\hit@stagestatus}
-	  \else
-  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
-      \fi
-      \fi
-  \fancyfoot[C]{\xiaowu\if@mainmatter\ifhit@bsmainpagenumberline-~\thepage~-\else\thepage\fi\else\ifhit@bsfrontpagenumberline-~\thepage~-\else\thepage\fi\fi}
-	  \ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉，此处优先级高于bsheadrule	_added by t
-	  \fancyhf{}
-	  \renewcommand{\headrulewidth}{0pt}
-	  \else
-	  \ifhit@bsheadrule
-	  \renewcommand{\headrule}{
-	  \vskip 1.190132pt
-	  \hrule\@height2.276208pt\@width\headwidth
-	  \vskip 0.75pt
-	  \hrule\@height.75pt\@width\headwidth
-	  }
-	  \else
-	  \renewcommand{\headrulewidth}{0pt}
-	  \fi
-	  \fi
-     \else
-	 \ifhit@noheader  %单独设置noheader项，可能会有老师要求在开题、中期报告没有页眉	_added by t
-     \fancyhf{}
-	 \renewcommand{\headrulewidth}{0pt}
-	 \else
-	 \renewcommand{\headrule}{
-	 \vskip 1.190132pt
-	 \hrule\@height2.276208pt\@width\headwidth
-	 \vskip 0.75pt
-	 \hrule\@height.75pt\@width\headwidth
-	 }
-	 \fi
-	 \fi
-  \fancyfoot[C]{\xiaowu-~\thepage~-}
+ % 添加自定义页眉文字代码 _modified by hithesis-alpha 191212 
+ % \begin{macrocode}
+  \ifhit@customizeheader
+   \fancyhead[C]{\songti\xiaowu[0]\customheader}%
+  \fi
+ % \end{macrocode}
+
 
   % 此处可能和word模板不一致
   % 页眉中小五汉字，0行距时，占用9bt，页眉高度为14pt, 所以以下数字之和要保持等于14pt-9bt=4.96634pt
@@ -1804,18 +1876,18 @@ delim_1 "\\hspace*{\\fill}"
   \vskip\abovecaptionskip
   \wuhao\sbox\@tempboxa{#1\ifhit@bachelor\hskip\ccwd\else\enskip\fi#2}%
   \ifdim \wd\@tempboxa >\hsize
-	  \ifhit@capcenterlast%
-		  \vskip 6.3bp%
-		  {\setbox0=\vbox{#1\ifhit@bachelor\hskip\ccwd\else\enskip\fi#2}
-			  \setbox1=\vbox{%
-				  \unvbox0
-				  \setbox2=\lastbox
-				  \hbox to \textwidth{\hfill\unhcopy2 \unskip\unskip\hfill}
-			  }
-		  \unvbox1}
-	  \else%
-		  #1\ifhit@bachelor\hskip\ccwd\else\enskip\fi#2%
-	  \fi%
+     \ifhit@capcenterlast%
+        \vskip 6.3bp%
+        {\setbox0=\vbox{#1\ifhit@bachelor\hskip\ccwd\else\enskip\fi#2}
+           \setbox1=\vbox{%
+              \unvbox0
+              \setbox2=\lastbox
+              \hbox to \textwidth{\hfill\unhcopy2 \unskip\unskip\hfill}
+           }
+        \unvbox1}
+     \else%
+        #1\ifhit@bachelor\hskip\ccwd\else\enskip\fi#2%
+     \fi%
     \par
   \else
   \global \@minipagefalse
@@ -1855,13 +1927,17 @@ delim_1 "\\hspace*{\\fill}"
 %    图表名称及格式。
 %    \changes{v1.0.8}{2017/11/5}{删除冗余公式符号定义}
 %    \begin{macrocode}
-% \changes{v2.0.6.1a}{20181221}{修改调整图表编号，添加判断，在开题/中期时，使图表编号为 section-1的格式，而非chapter-1} % _added by t
+% \changes{v2.0.6.1a}{20181221}{修改调整图表编号，添加判断，在开题/中期时，使图表编号为 section-1的格式，而非chapter-1} % _modified by hithesis-alpha
 % \begin{macrocode}
 \ifhit@kaiti
+\numberwithin{figure}{section}%开题模板下，重置计数器关联section
+\numberwithin{table}{section}%开题模板下，重置计数器关联section
 \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}%使图编号为 7-1 的格式 
 \renewcommand{\thetable}{\arabic{section}-\arabic{table}}%使表编号为 7-1 的格式
 \else
 \ifhit@zhongqi
+\numberwithin{figure}{section}%中期模板下，重置计数器关联section
+\numberwithin{table}{section}%中期模板下，重置计数器关联section
 \renewcommand{\thefigure}{\arabic{section}-\arabic{figure}}%使图编号为 7-1 的格式 
 \renewcommand{\thetable}{\arabic{section}-\arabic{table}}%使表编号为 7-1 的格式
 \else
@@ -2057,7 +2133,7 @@ delim_1 "\\hspace*{\\fill}"
   {
     \phantomsection
     \markboth{#2}{#2}
-		    \ifthenelse%
+          \ifthenelse%
       {\equal{#2}{\eabstractcname}}%
       {\addcontentsline{toc}{chapter}{\texorpdfstring{\ifhit@arialtitle\sffamily\heiti\else\heiti\fi \ifhit@absupper\MakeUppercase{#2}\else#2\fi}{#2}}}
       {\addcontentsline{toc}{chapter}{\texorpdfstring{\ifhit@arialtitle\sffamily\heiti\else\heiti\fi #2}{#2}}}
@@ -2095,7 +2171,7 @@ delim_1 "\\hspace*{\\fill}"
 % 此处添加保护选项
 % \changes{v1.0.13}{2018/4/5}{添加\cs{texorpdfstring}命令去除书签中带有格式时的警告}
 %    \begin{macrocode}
-	    \addcontentsline{toe}{chapter}{\texorpdfstring{\bfseries #4}{#4}}
+       \addcontentsline{toe}{chapter}{\texorpdfstring{\bfseries #4}{#4}}
     }
   }%
   {%	if \chapter
@@ -2109,7 +2185,7 @@ delim_1 "\\hspace*{\\fill}"
 % 此处添加保护选项
 % \changes{v1.0.13}{2018/4/5}{添加\cs{texorpdfstring}命令去除书签中带有格式时的警告}
 %    \begin{macrocode}
-	    \addcontentsline{toe}{chapter}{\texorpdfstring{\bfseries\relax Chapter \thechapter\hspace{0.5em}\ignorespaces #4}{Chapter \thechapter\hspace{0.5em}\ignorespaces #4}}
+       \addcontentsline{toe}{chapter}{\texorpdfstring{\bfseries\relax Chapter \thechapter\hspace{0.5em}\ignorespaces #4}{Chapter \thechapter\hspace{0.5em}\ignorespaces #4}}
     }
   }
 }
@@ -2117,13 +2193,13 @@ delim_1 "\\hspace*{\\fill}"
 \let\hit@section\section
 \RenewDocumentCommand\section{s o m o}{
   \IfBooleanTF{#1}%
-  {%	if \section*
+  {%  if \section*
     \hit@section*{#3}%
     \IfValueT{#4}{%
       \addcontentsline{toe}{section}{#4}
     }
   }%
-  {%	if \section
+  {%  if \section
     \IfNoValueTF{#2}%
     {\hit@section{#3}}%
     {\hit@section[#2]{#3}}%
@@ -2140,13 +2216,13 @@ delim_1 "\\hspace*{\\fill}"
 \let\hit@subsection\subsection
 \RenewDocumentCommand\subsection{s o m o}{
   \IfBooleanTF{#1}%
-  {%	if \subsection*
+  {%  if \subsection*
     \hit@subsection*{#3}%
     \IfValueT{#4}{%
       \addcontentsline{toe}{subsection}{#4}
     }
   }%
-  {%	if \subsection
+  {%  if \subsection
     \IfNoValueTF{#2}%
     {\hit@subsection{#3}}%
     {\hit@subsection[#2]{#3}}%
@@ -2163,13 +2239,13 @@ delim_1 "\\hspace*{\\fill}"
 \let\hit@subsubsection\subsubsection
 \RenewDocumentCommand\subsubsection{s o m o}{
   \IfBooleanTF{#1}%
-  {%	if \subsubsection*
+  {%  if \subsubsection*
     \hit@subsubsection*{#3}%
     \IfValueT{#4}{%
       \addcontentsline{toe}{subsubsection}{#4}
     }
   }%
-  {%	if \subsubsection
+  {%  if \subsubsection
     \IfNoValueTF{#2}%
     {\hit@subsubsection{#3}}%
     {\hit@subsubsection[#2]{#3}}%
@@ -2275,13 +2351,13 @@ delim_1 "\\hspace*{\\fill}"
 \gdef\hit@edegree{\hit@exuewei \ of \hit@exueke}
 \def\hit@cauthortitle{\hit@cxueweishort 士研究生}
 \fi
-\def\hit@kaiti@stageheader{开题报告}% 新定义页眉开题字段  _added by t
-\def\hit@zhongqi@stageheader{中期报告}	% 新定义页眉中期字段  _added by t
+\def\hit@kaiti@stageheader{开题报告}% 新定义页眉开题字段  _modified by hithesis-alpha
+\def\hit@zhongqi@stageheader{中期报告}  % 新定义页眉中期字段  _modified by hithesis-alpha
 \ifhit@kaiti
-\gdef\hit@stagestatus{开题报告}% 定义stagestatus字段  _added by t
+\gdef\hit@stagestatus{开题报告}% 定义stagestatus字段  _modified by hithesis-alpha
 \fi
 \ifhit@zhongqi
-\gdef\hit@stagestatus{中期报告}% 定义stagestatus字段  _added by t
+\gdef\hit@stagestatus{中期报告}% 定义stagestatus字段  _modified by hithesis-alpha
 \fi
 \ifhit@bachelor
 \gdef\hit@cxuewei{学士}
@@ -2289,6 +2365,14 @@ delim_1 "\\hspace*{\\fill}"
 \def\hit@bachelor@cxuewei{本科}
 \def\hit@bachelor@cthesisname{毕业设计（论文）}
 \def\hit@bachelor@caffiltitle{院（系）}
+%</cfg>
+%    \end{macrocode}
+% 此处添加深圳校区设置
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+%<*cfg>      
+\def\hit@bachelor@caffiltitlesz{学院}
+\def\hit@bachelor@caffiltitlewh{学院}
 \def\hit@bachelor@cstudentidtitle{学号}
 \def\hit@bachelor@cmajortitle{专业}
 \def\hit@bachelor@csupervisortitle{指导教师}
@@ -2296,6 +2380,14 @@ delim_1 "\\hspace*{\\fill}"
 \def\hit@bachelor@cstudenttitle{学生}
 \def\hit@cthesisname{学位论文}
 \def\hit@cschoolname{哈尔滨工业大学}
+%</cfg>
+%    \end{macrocode}
+% 此处添加深圳校区设置
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+%<*cfg>      
+\def\hit@shenzhencampus{（深圳）}
+\def\hit@weihaicampus{（威海）}
 \def\hit@cschoolnametitle{授予学位单位}
 \def\hit@cdatetitle{答辩日期}
 \def\hit@caffiltitle{所在单位}
@@ -2354,7 +2446,7 @@ delim_1 "\\hspace*{\\fill}"
 本人郑重声明：此处所提交的学位论文《\hit@ctitle》，是本人在导师指导下，在哈尔滨工业大学攻读学位期间独立进行研究工作所取得的成果，且学位论文中除已标注引用文献的部分外不包含他人完成或已发表的研究成果。对本学位论文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明。}
 \newcommand{\hit@datefill}{\hspace{2.5em}年\hspace{1.5em}月\hspace{1.5em}日}
 \newcommand{\hit@publication@ctitle}{攻读\hit@cxuewei 学位期间发表的论文及其他成果}
-\newcommand{\hit@publication@etitle}{Papers published in the period of PH.D. education}
+\newcommand{\hit@publication@etitle}{Papers published in the period of Ph.D. education}
 \def\hit@index@etitle{Index}
 \def\hit@hi{嗨！thesis}
 \def\hit@cbraceleft{（}
@@ -2375,83 +2467,102 @@ delim_1 "\\hspace*{\\fill}"
 \def\hit@second@titlepage{%
   \ifhit@bachelor\hit@second@titlepage@bachelor\else\hit@second@titlepage@other\fi}
 \def\hit@report@titlepage{% 定义新titlepage，区分开题/中期报告中，本科和研究生不同封面
-	\ifhit@bachelor\hit@report@titlepage@bachelor\else\hit@report@titlepage@graduate\fi}
+   \ifhit@bachelor\hit@report@titlepage@bachelor\else\hit@report@titlepage@graduate\fi}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% 封面代码改编自 https://github.com/dustincys/PlutoThesisProposal _added by t
-% 开题/中期报告封面—研究生 _added by t
+% 封面代码改编自 https://github.com/dustincys/PlutoThesisProposal _modified by hithesis-alpha
+% 开题/中期报告封面—研究生 _modified by hithesis-alpha
 \newcommand{\hit@report@titlepage@graduate}{
-	\thispagestyle{empty}
-	\zihao{-2}\vspace*{10mm}
-	\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-	\centerline{\kaishu\textbf{\hit@cschoolname}}
-	\vspace{10mm}
-	\centerline{\zihao{2}\songti\textbf{\hit@cdegree\hit@cthesisname\hit@stagestatus}}
-	\zihao{-2}\vspace*{10mm}
-	\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-	\centerline{\songti\textbf{题目：\rule[-4pt]{220pt}{0pt}\hspace{-220pt}\textbf\hit@ctitleone}}		
-	\centerline{\hspace{0em}\songti\textbf{\textbf\hit@ctitletwo}}		
-	\zihao{3}\vspace{4\baselineskip}
-	\hspace*{36pt}{\songti
-		\renewcommand{\arraystretch}{2.5}
-		\begin{tabular}{l@{}l}
-			\textbf{院\hfill 系}   & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@caffil}\\
-			\textbf{学\hfill 科}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@csubject}\\
-			\textbf{导\hfill 师}     & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@csupervisor}\\
-			\textbf{研\hfill 究\hfill 生}      & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@cauthor}\\
-			\textbf{学\hfill 号}  & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@cstudentid}\\
-			\textbf{\hit@stagestatus 日期} & \rule[-4pt]{200pt}{1pt}\hspace{-326pt}\centerline{\textbf\hit@cdate}\\
-		\end{tabular}\renewcommand{\arraystretch}{1}}
-	\vfill
-	\centerline{\songti\textbf{研究生院制}}
-	\vspace{0.5\baselineskip}
-	\centerline{\songti\textbf{二〇一四年九月}}
+   \thispagestyle{empty}
+   \zihao{-2}\vspace*{10mm}
+   \renewcommand{\CJKglue}{\hskip 3pt plus 0.08\baselineskip}
+   \centerline{\kaishu\textbf{\hit@cschoolname}}
+   \vspace*{15mm}
+   \centering{\zihao{2}\songti\textbf{
+    \renewcommand{\CJKglue}{\hskip 3pt plus 0.08\baselineskip}
+    \hit@cdegree\hit@cthesisname\hit@stagestatus
+    }}
+   \zihao{-2}\vspace*{11mm}
+   \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+   \begin{center}
+   	\renewcommand{\arraystretch}{1.5}
+   	\begin{tabular}{m{54pt}@{\hspace{15pt}}c}
+       {\xiaoer\songti\textbf{题\hfill 目：}} & \songti\xiaoer\textbf{\hit@ctitleone} \\
+                    & {\hspace{-2em} \songti\xiaoer\textbf{\hit@ctitletwo}} \\
+    	\end{tabular}
+   \end{center}
+    \vspace*{-10pt}
+   \zihao{3}\vspace{3\baselineskip}
+   \begin{center}\songti
+      \renewcommand{\arraystretch}{1.9}
+      \begin{tabular}{l@{}l}
+         \textbf{院\hfill （系）}   & \underline{\makebox[7cm]{\textbf\hit@caffil}}\\
+         \textbf{学\hfill 科}     & \underline{\makebox[7cm]{\textbf\hit@csubject}}\\
+         \textbf{导\hfill 师}     & \underline{\makebox[7cm]{\textbf\hit@csupervisor}}\\
+         \textbf{研\hfill 究\hfill 生}      & \underline{\makebox[7cm]{\textbf\hit@cauthor}}\\
+         \textbf{学\hfill 号}  & \underline{\makebox[7cm]{\textbf\hit@cstudentid}}\\
+         \textbf{\hit@stagestatus 日期} & \underline{\makebox[7cm]{\textbf\hit@cdate}}\\
+      \end{tabular}\renewcommand{\arraystretch}{1}
+    \end{center}
+   \vfill
+   \centerline{\songti\textbf{研究生院制}}
+   \vspace{0.9\baselineskip}
+   %\centerline{\songti\textbf{二〇一四年九月}}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 目前和标准模板还有些许区别，“题目”两个字与题目的内容一同居中，而学校模板是题目两个字位置固定，而题目内容单独居中。 
-%% 开题/中期报告封面—本科生 _added by t
-%% 修改开题报告模板，使之符合哈工大（威海）的规范，同时解决一些历史遗留问题
+%% 2.0.11.0a (2020/02/05) 更新研究生封面开题/中期code，使之与研究生院样例更加接近，但具体页面参数数值未精确校准；
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 开题/中期报告封面—本科生 _modified by hithesis-alpha
+%% 2.0.11.0a (2020/02/05) 更新本科开题/中期封面，代码参fu考zhi自：https://github.com/specialpointcentral/hithesis-beta
+%% 为适应教务处(http://jwc.hit.edu.cn/2566/list.htm)要求，移除班号项，题目第二行改为居中
 \newcommand{\hit@report@titlepage@bachelor}{
-	\thispagestyle{empty}
-	\zihao{-2}\vspace*{10mm}
-	\centering\includegraphics[width=6.2cm]{hitlogo}
-	\vfill
-	\centering{\xiaoyi\songti\textbf{
+   \thispagestyle{empty}
+   \zihao{-2}\vspace*{10mm}
+   \centering\includegraphics[width=6.2cm]{hitlogo}
+   \vfill
+   \centering{\xiaoyi\songti\textbf{
     \renewcommand{\CJKglue}{\hskip 3pt plus 0.08\baselineskip}
     \hit@bachelor@cthesisname\hit@stagestatus
     }}
-	\vfill
-	%\zihao{-2}\vspace*{10mm}
-	\renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
-  \begin{center}
+   \vfill
+   %\zihao{-2}\vspace*{10mm}
+   \renewcommand{\CJKglue}{\hskip 2pt plus 0.08\baselineskip}
+   \begin{center}
     \renewcommand{\arraystretch}{1.5}
     % 使用空格字符，保证能够空余半个汉字的位置
-    \begin{tabular}{m{54pt}@{\hspace{9pt}}l}
+    \begin{tabular}{m{54pt}@{\hspace{9pt}}c}
       {\xiaoer\songti\textbf{题\hfill 目：}} & \songti\xiaoer\textbf{\hit@ctitleone} \\
-                    & \songti\xiaoer\textbf{\hit@ctitletwo} \\
+                    & {\hspace{-2em} \songti\xiaoer\textbf{\hit@ctitletwo}} \\
     \end{tabular}
     \renewcommand{\arraystretch}{1}
-  \end{center}
-	\zihao{3}\vspace{4\baselineskip}
-	\hspace*{70pt}{
+   \end{center}
+   \zihao{3}\vspace{4\baselineskip}
+   \hspace*{70pt}{
     \begin{center}\songti
-		\renewcommand{\arraystretch}{2.1}
-		\begin{tabular}{l@{\ \ }c}
-			\textbf{专\hfill 业}                     & \underline{\makebox[6.1cm]{\textbf{\hit@csubject}}}\\
-			\textbf{学\hfill 生}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cauthor}}}\\
-			\textbf{学\hfill 号}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cstudentid}}}\\
-      \textbf{班\hfill 号}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cclassid}}}\\
-			\textbf{指\hfill 导\hfill 教\hfill 师}   & \underline{\makebox[6.1cm]{\textbf{\hit@csupervisor}}}\\
-			\textbf{日\hfill 期}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cdate}}}\\
-		\end{tabular}\renewcommand{\arraystretch}{1}
+      \renewcommand{\arraystretch}{2.1}
+      \begin{tabular}{l@{\ \ }c}
+         \textbf{专\hfill 业}                     & \underline{\makebox[6.1cm]{\textbf{\hit@csubject}}}\\
+         \textbf{学\hfill 生}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cauthor}}}\\
+         \textbf{学\hfill 号}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cstudentid}}}\\
+        \ifhit@weihai % 威海校区特有
+         \textbf{班\hfill 号}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cclassid}}}\\
+        \fi
+         \textbf{指\hfill 导\hfill 教\hfill 师}   & \underline{\makebox[6.1cm]{\textbf{\hit@csupervisor}}}\\
+         \textbf{日\hfill 期}                     & \underline{\makebox[6.1cm]{\textbf{\hit@cdate}}}\\
+      \end{tabular}\renewcommand{\arraystretch}{1}
     \end{center}
     }
-	\vfill
-	% \centerline{\lishu\textbf{哈尔滨工业大学教务处制}}
-	\vspace{0.5\baselineskip}
+   \vfill
+   \ifhit@weihai % 威海校区特有
+   % 我也不懂为啥威海校区没有这个东西
+   \else
+   \centerline{\heiti\textbf{哈尔滨工业大学教务处制}}
+   \fi
+   \vspace{0.5\baselineskip}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 目前本科生开题/中期报告封面，和教务处模板还有区别，主要表现在题目等间距不同，底部“哈尔滨工业大学教务处制”无法设置隶
-%% 书字体(虽然ctex-fontset-siyuan.def 定义了\lishu 命令，但使用报错，暂无精力调试)。 _added by t % 这一个没有测试，但在Windows下是可行的
+%% 书字体(虽然ctex-fontset-siyuan.def 定义了\lishu 命令，但使用报错，暂无精力调试，猜测是字体问题，部分Windows用户可以尝试改为\lishu)。 _modified by hithesis-alpha
 
 \newcommand{\hit@first@titlepage@bachelor}{
 \ifthenelse%
@@ -2468,13 +2579,37 @@ delim_1 "\\hspace*{\\fill}"
   \begin{center}
     \setlength{\hit@title@width}{4em}
     \heiti\xiaosi
-      \begin{tabular}{rc}
-	{\hit@put@title{\hit@bachelor@caffiltitle}\hit@title@csep} & \hit@caffil\\[14pt]
-	{\hit@put@title{\hit@bachelor@cstudentidtitle}\hit@title@csep} & \hit@cstudentid
+      %    \end{macrocode}
+% 此处深圳校区竟然是左对齐。另外，院系名称也有点不一样。
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+    \ifhit@shenzhen%
+      \begin{tabular}{rl}%
+    \else%
+      \begin{tabular}{rc}%
+    \fi%
+        {\hit@put@title{%
+          \ifhit@harbin%
+            \hit@bachelor@caffiltitle%
+          \else%
+            \ifhit@shenzhen%
+              \hit@bachelor@caffiltitlesz%
+            \else%
+              \ifhit@weihai%
+                \hit@bachelor@caffiltitlewh%
+              \fi%
+            \fi%
+          \fi%
+        }\hit@title@csep} & \hit@caffil\\[14pt]
+  {\hit@put@title{\hit@bachelor@cstudentidtitle}\hit@title@csep} & \hit@cstudentid
     \end{tabular}
-      \begin{tabular}{rc}
-	{\hit@put@title{\hit@bachelor@cmajortitle}\hit@title@csep} & \hit@csubject\\[14pt]
-	{\hit@put@title{\hit@bachelor@csupervisortitle}\hit@title@csep} &  \hit@csupervisor
+      \ifhit@shenzhen%
+      \begin{tabular}{rl}%
+    \else%
+      \begin{tabular}{rc}%
+    \fi%
+   {\hit@put@title{\hit@bachelor@cmajortitle}\hit@title@csep} & \hit@csubject\\[14pt]
+   {\hit@put@title{\hit@bachelor@csupervisortitle}\hit@title@csep} &  \hit@csupervisor
       \end{tabular}
     \end{center}
     \vspace{2.6cm}
@@ -2485,11 +2620,22 @@ delim_1 "\\hspace*{\\fill}"
 % 此处本科生使用了\hit\ 的logo且本科生论文标题使用了华文新魏字体，为了方便使用，
 % 此处使用了矢量化图片作为输入。
 % \changes{v1.0.11}{2018/03/07}{更改的中文标题，根据反馈，在封面中标题需要自由
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
 % 换行且不能影响到原创性声明。此处额外设置了一个变量ctitlecover。}
 %    \begin{macrocode}
 \newcommand{\hit@second@titlepage@bachelor}{
   \vspace*{0.8cm}
-  \centering\includegraphics[width=6.2cm]{hitlogo}
+  \ifhit@harbin%
+  \centering{\includegraphics[width=6.2cm]{hitlogo}}
+  \else%
+  \ifhit@shenzhen%
+  \centering{\includegraphics[width=6.2cm]{hitlogo}~~\raisebox{0.2em}{\kaishu\yihao\hit@shenzhencampus}}
+  \else%
+  \ifhit@weihai%
+  \centering{\includegraphics[width=6.2cm]{hitlogo}}
+  \fi%
+  \fi%
+  \fi%
   \vspace{1.3cm}
   \begin{center}
     \centering\includegraphics[width=10.5cm]{bthesistitle}
@@ -2497,18 +2643,18 @@ delim_1 "\\hspace*{\\fill}"
     \parbox[t][14.2cm][b]{\textwidth}
     {\heiti\xiaosan
       \begin{center} \renewcommand{\arraystretch}{2.5} \heiti
-	\setlength{\hit@title@width}{5.5em}
-	\begin{tabular}{l@{\ \  }c}
+   \setlength{\hit@title@width}{5.5em}
+   \begin{tabular}{l@{\ \  }c}
 
-	  {\xiaoer  \hit@put@title{\hit@bachelor@cthesistitle}} & \underline{\makebox[6.1cm]{\xiaoer \hit@ctitleone}}\\
-								     &  \underline{\makebox[6.1cm]{\xiaoer \hit@ctitletwo}}\\
-									    & \\
-	  {\hit@put@title{\hit@bachelor@cmajortitle}}                  & \underline{\makebox[6.1cm]{\hit@csubject}}\\
-	  {\hit@put@title{\hit@bachelor@cstudentidtitle}}                  & \underline{\makebox[6.1cm]{\hit@cstudentid}}\\
-	  {\hit@put@title{\hit@bachelor@cstudenttitle}}                  & \underline{\makebox[6.1cm]{\hit@cauthor}}\\
-	  {\hit@put@title{\hit@bachelor@csupervisortitle}} & \underline{\makebox[6.1cm]{\hit@csupervisor}}\\
-	  {\hit@put@title{\hit@cdatetitle}} & \underline{\makebox[6.1cm]{\hit@cdate}}
-	\end{tabular} \renewcommand{\arraystretch}{1}
+     {\xiaoer  \hit@put@title{\hit@bachelor@cthesistitle}} & \underline{\makebox[6.1cm]{\xiaoer \hit@ctitleone}}\\
+                             &  \underline{\makebox[6.1cm]{\xiaoer \hit@ctitletwo}}\\
+                               & \\
+     {\hit@put@title{\hit@bachelor@cmajortitle}}                  & \underline{\makebox[6.1cm]{\hit@csubject}}\\
+     {\hit@put@title{\hit@bachelor@cstudentidtitle}}                  & \underline{\makebox[6.1cm]{\hit@cstudentid}}\\
+     {\hit@put@title{\hit@bachelor@cstudenttitle}}                  & \underline{\makebox[6.1cm]{\hit@cauthor}}\\
+     {\hit@put@title{\hit@bachelor@csupervisortitle}} & \underline{\makebox[6.1cm]{\hit@csupervisor}}\\
+     {\hit@put@title{\hit@cdatetitle}} & \underline{\makebox[6.1cm]{\hit@cdate}}
+   \end{tabular} \renewcommand{\arraystretch}{1}
       \end{center}
     }
   \end{center}
@@ -2549,26 +2695,26 @@ delim_1 "\\hspace*{\\fill}"
   \begin{center}
     {\songti \xiaosi
       \begin{tabular}{@{}r@{：}l@{}}
-	\hit@natclassifiedindextitle & \hit@natclassifiedindex\\
-	\hit@internatclassifiedindextitle & \hit@intclassifiedindex
+   \hit@natclassifiedindextitle & \hit@natclassifiedindex\\
+   \hit@internatclassifiedindextitle & \hit@intclassifiedindex
     \end{tabular}}\hfill
     {\songti \xiaosi
       \begin{tabular}{@{}r@{：}l@{}}
-	\hit@schoolidtitle & \hit@schoolid\\
-	\hit@secretlevel & \hit@statesecrets
+   \hit@schoolidtitle & \hit@schoolid\\
+   \hit@secretlevel & \hit@statesecrets
     \end{tabular}}
   \parbox[t][3.2cm][t]{\textwidth}{\begin{center} \end{center} }
     \parbox[t][2.4cm][t]{\textwidth}{\xiaoer[1]
   \begin{center}\songti\bfseries\hit@cdegree\hit@cthesisname\end{center}
       \ifhit@fulltime\relax\else\begin{center}\songti\textbf{\hit@cbraceleft\hit@cstudenttype\hit@cbraceright}\end{center}\fi}
-	\parbox[t][5cm][t]{\textwidth}{\erhao
+   \parbox[t][5cm][t]{\textwidth}{\erhao
   \begin{center}\heiti\hit@ctitlecover\end{center}
 \ifhit@subtitle\begin{center}\hspace{-4em}\xiaoer\heiti\pozhehao\hit@csubtitle\end{center}\fi}
     \parbox[t][9.8cm][b]{\textwidth}
     {\sihao
       \setlength{\hit@title@width}{6em}
       \begin{center} \renewcommand{\arraystretch}{1.62} \songti
-	\begin{tabular}{l@{\hit@title@csep}l}
+   \begin{tabular}{l@{\hit@title@csep}l}
 	  {\heiti \hit@put@title{\hit@cauthortitle}}	&	\hit@cauthor\\
 	  {\heiti \hit@put@title{\hit@csupervisortitle}}	&	\hit@csupervisor\\
         \ifx\hit@cassosupervisor\@empty\else%
@@ -2582,7 +2728,7 @@ delim_1 "\\hspace*{\\fill}"
 	  {\heiti \hit@put@title{\hit@caffiltitle}}		&	\hit@caffil\\
 	  {\heiti \hit@put@title{\hit@cdatetitle}}		&	\hit@cdate\\
 	  {\heiti \hit@put@title{\hit@cschoolnametitle}}	&	\hit@cschoolname
-	\end{tabular} \renewcommand{\arraystretch}{1}
+   \end{tabular} \renewcommand{\arraystretch}{1}
     \end{center} }
   \end{center}
 }
@@ -2624,28 +2770,28 @@ delim_1 "\\hspace*{\\fill}"
   \end{center}
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% 添加开题、中期报告封面判断样式 _added by t
+%% 添加开题、中期报告封面判断样式 _modified by hithesis-alpha
 \ifhit@kaiti
 \def\makecover{
-\begin{titlepage}	% 测试自定义的开题封面样式 _added by t 
-	\hit@report@titlepage
+\begin{titlepage} % 测试自定义的开题封面样式 _modified by hithesis-alpha 
+   \hit@report@titlepage
 \end{titlepage}
 }
 \renewcommand\thesection{\arabic {section}.}
-\renewcommand\thesubsection{\thesection \arabic {subsection}}	% 	此处去除chapter继承编号，开题/中期报告只有section _added by t
-\setcounter{page}{0}	% 重置页数计数器，使目录页页码从1开始
+\renewcommand\thesubsection{\thesection \arabic {subsection}}  %  此处去除chapter继承编号，开题/中期报告只有section _modified by hithesis-alpha
+\setcounter{page}{0} % 重置页数计数器，使目录页页码从1开始
 \else
 \ifhit@zhongqi
 \def\makecover{
-	\begin{titlepage}	% 测试自定义的开题封面样式 _added by t 
-		\hit@report@titlepage
-	\end{titlepage}
+   \begin{titlepage} % 测试自定义的开题封面样式 _modified by hithesis-alpha 
+      \hit@report@titlepage
+   \end{titlepage}
 }
 \renewcommand\thesection{\arabic {section}.}
-\renewcommand\thesubsection{\thesection \arabic {subsection}}	% 	此处去除chapter继承编号，开题/中期报告只有section _added by t
-\setcounter{page}{0}	% 重置页数计数器，使目录页页码从1开始 _added by t
+\renewcommand\thesubsection{\thesection \arabic {subsection}}  %  此处去除chapter继承编号，开题/中期报告只有section _modified by hithesis-alpha
+\setcounter{page}{0} % 重置页数计数器，使目录页页码从1开始 _modified by hithesis-alpha
 \else
-%% 下为原正常论文封面 _added by t
+%% 下为原正常论文封面 _modified by hithesis-alpha
 \def\makecover{
   \phantomsection
   \pdfbookmark[0]{\hit@ctitle}{ctitle}
@@ -2917,14 +3063,14 @@ delim_1 "\\hspace*{\\fill}"
     \ifhit@bachelor\hit@authorization@bachelor\else\hit@authorization@other\fi
     }{%
     \includepdf[fitpaper=true,pagecommand={%
-	\thispagestyle{hit@empty}%
-	\phantomsection\addcontentsline{toc}{chapter}{\ifhit@bachelor\hit@declarename@bachelor\else\hit@authorization@ctitle\fi}%
-	\ifhit@doctor%
+   \thispagestyle{hit@empty}%
+   \phantomsection\addcontentsline{toc}{chapter}{\ifhit@bachelor\hit@declarename@bachelor\else\hit@authorization@ctitle\fi}%
+   \ifhit@doctor%
 %    \end{macrocode}
 % \changes{v1.0.13}{2018/4/5}{添加\cs{texorpdfstring}命令去除书签中带有格式时的警告}
 %    \begin{macrocode}
-		\addcontentsline{toe}{chapter}{\texorpdfstring{\bfseries \hit@authorization@etitle}{\hit@authorization@etitle}}%
-	\fi%
+      \addcontentsline{toe}{chapter}{\texorpdfstring{\bfseries \hit@authorization@etitle}{\hit@authorization@etitle}}%
+   \fi%
     }]{#1}%
   }%
 }
@@ -2940,7 +3086,7 @@ delim_1 "\\hspace*{\\fill}"
 \def\@inlinecite#1{\begingroup\citestyle{inline}\let\@cite\NAT@citenum\citep{#1}\endgroup}
 \let\onlinecite\inlinecite
 \renewenvironment{thebibliography}[1]{%
-% \changes{v2.0.6a}{20181220}(添加开题/中期报告，参考文献使用section层级，并且不另起新页) _added by t
+% \changes{v2.0.6a}{20181220}(添加开题/中期报告，参考文献使用section层级，并且不另起新页) _modified by hithesis-alpha
 % \begin{macrocode}
   \ifhit@kaiti
   \section{\bibname}[\hit@bibname@etitle]

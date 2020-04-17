@@ -1,0 +1,22 @@
+Linux和Mac没有隶书，解决办法如下：
+ubuntu解决方案
+
+    1. 首先安装对应字体，可以在windows上弄下来，也可以下载并安装。
+    2. 然后修改文件：/usr/share/texlive/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-fandol.def
+    3. 修改内部的代码：
+
+    - 在 \NewDocumentCommand \kaishu { } { \CJKfamily { zhkai } } 后添加  \NewDocumentCommand \lishu { } { \CJKfamily { zhli } }
+    - 在 \setCJKfamilyfont { zhkai } [ Extension = .otf ] { FandolKai-Regular } 后添加 \setCJKfamilyfont { zhli } { LiSu }
+
+修改完成的文件附带在此文件夹中，可以直接替换 ctex-fontset-fandol.def
+
+Mac解决办法
+
+    安装对应字体，可以在windows上弄下来，也可以下载并安装
+    修改文件/usr/local/texlive/2017/texmf-dist/tex/latex/ctex/fontset/ctex-fontset-mac.def（注意安装的texlive版本，我这里是2017）：
+    在\setCJKfamilyfont { zhkai } { STKaiti } 下面添加 \setCJKfamilyfont { zhli }    { LiSu }
+    在\NewDocumentCommand \kaishu { } { \CJKfamily { zhkai } } 后面添加 \NewDocumentCommand \lishu    { } { \CJKfamily { zhli } }
+
+修改完成的文件附带在此文件夹中，可以直接替换 ctex-fontset-mac.def
+
+可以查看：https://github.com/Regulust/hithesis-alpha/issues/1

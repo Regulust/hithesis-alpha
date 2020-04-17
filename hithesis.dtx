@@ -1587,6 +1587,45 @@ delim_1 "\\hspace*{\\fill}"
   \renewcommand{\footrulewidth}{0pt}
 }
 %    \end{macrocode}
+% 威海校区特有的部分，开题中期加入了指导老师评语等
+% 现在只支持威海校区本科，但其实可以扩展到所有需要加入尾评的
+%    \begin{macrocode}
+\renewcommand\makecomment{%
+  \ifhit@bachelor
+  \ifhit@weihai
+    \ifhit@kaiti   %页眉判断-开题
+    \begin{figure}[b]
+      \songti\xiaosi[2]
+      \begin{tabular}{p{432bp}<{\raggedright}}
+        指导教师评语： \underline{\makebox[348bp]{~}}\\
+        \underline{\makebox[432bp]{~}} \\
+        \underline{\makebox[432bp]{~}} \\
+        \underline{\makebox[432bp]{~}} \\
+        \underline{\makebox[432bp]{~}} \\
+        指导教师签字：\underline{\makebox[120bp]{~}} \makebox[24bp]{~}
+        检查日期：\underline{\makebox[144bp]{~}} \\
+      \end{tabular}
+    \end{figure}
+    \else
+    \ifhit@zhongqi %页眉判断-中期
+    \begin{figure}[b]
+      \songti\xiaosi[2]
+      \begin{tabular}{p{432bp}<{\raggedright}}
+        指导教师评语： \underline{\makebox[348bp]{~}}\\
+        \underline{\makebox[432bp]{~}} \\
+        \underline{\makebox[432bp]{~}} \\
+        \underline{\makebox[432bp]{~}} \\
+        \underline{\makebox[432bp]{~}} \\
+        指导教师签字：\underline{\makebox[120bp]{~}} \makebox[24bp]{~}
+        检查日期：\underline{\makebox[144bp]{~}} \\
+      \end{tabular}
+    \end{figure}
+    \else
+    \fi
+  \fi
+  \fi
+}
+%    \end{macrocode}
 %    此处根据本科生模板的多种版本，提供选项自定义页码、页眉样式。
 %   \changes{v1.0.15}{2018/06/05}{添加控制本科论文的页码横线选项}
 %   \changes{v1.0.15}{2018/06/05}{删除冗余的页面格式}

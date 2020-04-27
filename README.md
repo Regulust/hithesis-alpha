@@ -27,6 +27,10 @@ Table of Contents
       * [样式示例](#样式示例)
 
 ## 更新记录
+**update**
+*v2.1.0.1a 20200427*
+- minor fix: 更新一些提示语句等，修正\makecomment日期横线长度
+- Longtable caption problem fixed by [SPC](https://github.com/specialpointcentral)
 
 **update:**
 
@@ -35,6 +39,8 @@ Table of Contents
 - 更新到hithesis v2.1.0版本，支持校区选择；
 - 修改了原版本（hithesis v2.1.0）威海校区毕业论文封面样式；
 - 将 [hithesis-beta](https://github.com/specialpointcentral/hithesis-beta)合并入[hithesis-alpha](https://github.com/Regulust/hithesis-alpha)。
+
+*by [SPC](https://github.com/specialpointcentral)，大神太6了🙏*
 
 **update:**
 

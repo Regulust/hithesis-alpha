@@ -101,63 +101,63 @@
 \include{front/custom_definition}   %插入自定义宏包、命令文件_t
 
 \begin{document}
-
-\frontmatter
-%\setcounter{page}{0} %如果使用开题/中期报告时，目录页码不正确时使用，重置页码计数器
-%\includepdfmerge{front/report_cover.pdf} 
-%如果自动生成封面不满足需要，可以自行填写学校word模板封面，生成pdf文件，放入front文件夹，手动插入该pdf封面，并手动注释掉下面\input{front/reportcover}  及 \makecover 两行。
-\input{front/reportcover} % 开题/中期封面
-%\input{front/cover} % 毕业论文封面
-\makecover	%若maketitle报错，可在上面两行切换对应的封面文件
-%\input{front/denotation}%物理量名称表,符合规范为主，有要求添加
-%\cleardoublepage  %自定义在什么位置进行右翻页
-\tableofcontents    % 中文目录,有些专业研究生开题要求添加目录，中期、本科不要求，以教学秘书发送模板要求为准, 自行添加
-%\cleardoublepage  %自定义在什么位置进行右翻页
-%\tableofengcontents % 英文目录,硕本不要求,开题/中期不要求
-
-\mainmatter
-%\linenumbers %debug 选项
-%\layout　%debug 选项
-%\floatdiagram %debug 选项
-%\begin{figure} %debug 选项
-%\currentfloat %debug 选项
-%\tryintextsep{\intextsep} %debug 选项
-%\trytopfigrule{0.5pt} %debug 选项
-%\trybotfigrule{1pt} %debug 选项
-%\setlayoutscale{0.9} %debug 选项
-%\floatdesign %debug 选项
-%\caption{Float layout with rules}\label{fig:fludf} %debug 选项
-%\end{figure} %debug 选项
-\include{body/introduction}
-
-
-\backmatter
-%硕博书序
-%\include{back/conclusion}   % 结论
-\bibliographystyle{hithesis} %如果没有参考文献时候
-%\bibliography{reference}  %开题/中期报告如果需要添加参考文献，需要注释此行，然后将此行内容添加到body文档正文末尾，否则会另起新页；对于正常毕业论文，则保留此行，去掉body文档末尾该项。
-%\begin{appendix}%附录
-%\input{back/appA.tex}
-%\end{appendix}
-%\include{back/publications}    % 所发文章
-%\include{back/ceindex}    % 索引, 根据自己的情况添加或者不添加，选择自动添加或者手工添加。
-%\authorization %授权
-%%\authorization[saomiao.pdf] %添加扫描页的命令，与上互斥
-%\include{back/acknowledgements} %致谢
-%\include{back/resume}          % 博士学位论文有个人简介
-
-%本科书序为：
-%\include{body/conclusion}   % 结论
-%\bibliographystyle{hithesis}
-%\bibliography{reference}
-%\authorization %授权
-%%\authorization[saomiao.pdf] %添加扫描页的命令，与上互斥
-%\include{body/acknowledgements} %致谢
-%\begin{appendix}%附录
-%\input{body/appendix01}%本科生翻译论文
-%\end{appendix}
-
-%开题/中期书序：
-
-
+	
+	\frontmatter
+	%\setcounter{page}{0} %如果使用开题/中期报告时，目录页码不正确时使用，重置页码计数器
+	%\includepdfmerge{front/report_cover.pdf} 
+	%如果自动生成封面不满足需要，可以自行填写学校word模板封面，生成pdf文件，放入front文件夹，手动插入该pdf封面，并手动注释掉下面\input{front/reportcover}  及 \makecover 两行。
+	\input{front/reportcover} % 开题/中期封面
+	%\input{front/cover} % 毕业论文封面
+	\makecover	%若maketitle报错，可在上面两行切换对应的封面文件
+	%\input{front/denotation}%物理量名称表,符合规范为主，有要求添加
+	%\cleardoublepage  %自定义在什么位置进行右翻页
+	\tableofcontents    % 中文目录,有些专业研究生开题要求添加目录，中期、本科不要求，以教学秘书发送模板要求为准, 自行添加
+	%\cleardoublepage  %自定义在什么位置进行右翻页
+	%\tableofengcontents % 英文目录,硕本不要求,开题/中期不要求
+	
+	\mainmatter
+	%\linenumbers %debug 选项
+	%\layout　%debug 选项
+	%\floatdiagram %debug 选项
+	%\begin{figure} %debug 选项
+	%\currentfloat %debug 选项
+	%\tryintextsep{\intextsep} %debug 选项
+	%\trytopfigrule{0.5pt} %debug 选项
+	%\trybotfigrule{1pt} %debug 选项
+	%\setlayoutscale{0.9} %debug 选项
+	%\floatdesign %debug 选项
+	%\caption{Float layout with rules}\label{fig:fludf} %debug 选项
+	%\end{figure} %debug 选项
+	\include{body/introduction}
+	
+	
+	\backmatter
+	%硕博书序
+	%\include{back/conclusion}   % 结论
+	\bibliographystyle{hithesis} %如果没有参考文献时候
+	%\bibliography{reference}  %开题/中期报告如果需要添加参考文献，需要注释此行，然后将此行内容添加到body文档正文末尾，否则会另起新页；对于正常毕业论文，则保留此行，去掉body文档末尾该项。
+	%\begin{appendix}%附录
+	%\input{back/appA.tex}
+	%\end{appendix}
+	%\include{back/publications}    % 所发文章
+	%\include{back/ceindex}    % 索引, 根据自己的情况添加或者不添加，选择自动添加或者手工添加。
+	%\authorization %授权
+	%%\authorization[saomiao.pdf] %添加扫描页的命令，与上互斥
+	%\include{back/acknowledgements} %致谢
+	%\include{back/resume}          % 博士学位论文有个人简介
+	
+	%本科书序为：
+	%\include{body/conclusion}   % 结论
+	%\bibliographystyle{hithesis}
+	%\bibliography{reference}
+	%\authorization %授权
+	%%\authorization[saomiao.pdf] %添加扫描页的命令，与上互斥
+	%\include{body/acknowledgements} %致谢
+	%\begin{appendix}%附录
+	%\input{body/appendix01}%本科生翻译论文
+	%\end{appendix}
+	
+	%开题/中期书序：
+	
+	
 \end{document}

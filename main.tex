@@ -3,7 +3,7 @@
 %\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=true,absupper=true,fontset=windowsnew,type=doctor]{hithesis}
 %\newcommand{\customheader}{自定义页眉}  
 %在这里自定义页眉文字（此命令需在最前），并在documentclass中设置headersetting=customizeheader _modified by hithesis-alpha
-\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=false,absupper=true,type=master,stage=zhongqi]{hithesis}
+\documentclass[newtxmath=true,newgeometry=two,capcenterlast=true,subcapcenterlast=true,openright=false,absupper=true,type=master,stage=zhongqi,campus=weihai]{hithesis}
 
 %%开题/中期等报告无右翻页问题，需设置openright=false，大论文时需参照原hithesis说明自行设置（一般博士论文在双面打印才需要设置右翻页） 
 %%如果改回大论文模板编译出现makecover错误，记得在下面修改回原模板的封面文件哦\input{front/cover}      _modified by hithesis-alpha:
@@ -14,6 +14,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 选填选项（选填选项的缺省值已经尽可能满足了大多数需求，除非明确知道自己有什么
 % 需求）
+% campus=shenzhen|weihai|harbin
+%   含义：校区选项，默认harbin
 % glue=true|false
 %  含义：由于我工规范中要求字体行距在一个闭区间内，这个选项为true表示tex自
 %  动选择，为false表示区间内一个最接近版心要求行数的要求的默认值，缺省值为
@@ -31,7 +33,7 @@
 %  以后 的字体）或 windowsold（vista 以前）或者想用思源宋体并且是已经安装
 %  了思源宋体的任何系统，填写siyuan选项。缺省值为空，自动识别系统并匹配字体
 %  。模板版中给出的思源字体定义文件定义的思源字体的版本是Adobe版，其他字体
-%  是windowsnew字体。
+%  是windowsnew字体。更多字体问题可以查看文件夹中说明。
 % tocblank=true|false
 %  含义：目录中第一章之前，是否加一行空白。缺省值为true。
 % chapterhang=true|false

@@ -1,8 +1,6 @@
 # hithesis
 # 哈尔滨工业大学LaTeX论文模板
 
-***原hithesis的README (20200109update)***
-
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">hithesis</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/dustincys/hithesis" property="cc:attributionName" rel="cc:attributionURL">https://github.com/dustincys/hithesis</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/dustincys/hithesis" rel="dct:source">https://github.com/dustincys/hithesis</a>上的作品创作。
 
 ## What's hithesis?
@@ -25,10 +23,8 @@ version 2004/10/01 or later.
 ## hithesis是什么？
 
 hithesis
-旨在建立一个简单易用的哈尔滨工业大学学位论文LaTeX模板，包括本科论文、硕士论文、博士论文
-。现 在支持本科、硕士、博士论文，对其它格式的支持会陆续加入。
-hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis
-"CTAN**)中，用户安装TeXLive将自带我工模板（版本日期>2017.08.28）。
+一个简单易用的哈尔滨工业大学学位论文LaTeX模板，现包括一校三区本科论文、硕士论文、博士论文。对其它格式的支持会陆续加入。
+hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis)中，用户安装TeXLive将自带我工模板（版本日期>2017.08.28）。
 
 ## 我工规范有歧义之处
 
@@ -44,11 +40,11 @@ hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis
 
 - 极限程度实现了[《哈尔滨工业大学研究生学位论文撰写规范》](http://hitgs.hit.edu.cn/aa/fd/c3425a109309/page.htm)、[《哈尔滨工业大学本科生毕业论文撰写规范》](http://jwc.hit.edu.cn/2566/list.htm)
 - 这是[PlutoThesis](https://github.com/dustincys/PlutoThesis "PlutoThesis**)的终极进化，PlutoThesis废弃不再维护。
- - 更傻更简单的选项，例如论文主文件，只需要在文档类的括号中填写本硕博选项，字体选项（设置弹性间距或者刚性间距），文科生选项（目录可以设成四级目录），非全日制类型等，轻松设定目标格式。
- - 自适应格式，例如图题和标题，标题字号在字数超过两行时自动由五号变小五号，实现自适应（硕博规范规定，字数多时用五号）
- - 自动化中英文索引（博士规范要求，有需要时候添加）
- - 图书馆提交论文级的电子版
- - ……
+- 更傻更简单的选项，例如论文主文件，只需要在文档类的括号中填写本硕博选项，字体选项（设置弹性间距或者刚性间距），文科生选项（目录可以设成四级目录），非全日制类型等，轻松设定目标格式。
+- 自适应格式，例如图题和标题，标题字号在字数超过两行时自动由五号变小五号，实现自适应（硕博规范规定，字数多时用五号）
+- 自动化中英文索引（博士规范要求，有需要时候添加）
+- 图书馆提交论文级的电子版
+- ……
 
 ### 矫正PlutoThesis的不足
 
@@ -104,7 +100,7 @@ CTAN的版本一般会比较落后，但在每年年底会同步为最新版本�
 ### 关于hithesis的线上讨论区
 
 ~~由于维护者（就是本书呆）已经是高龄不毕业刀客，课题繁忙，常常无法及时回答疑问。~~
-为了解决使用中遇到的问题，请各位刀客和大侠加入QQ群hithesis讨论区：259959600。
+为了解决使用中遇到的问题，请各位刀客和大侠加入QQ群hithesis讨论区：259959600 （人满）或窝工山hithesis派：851792460。
 如要和作者聊聊，请先看[hithesis的“昨天今天和明天”](https://yanshuo.name/cn/2020/01/hithesis/)。
 
 hithesis 高级群：476262502 （高级群为作者散布高级排版、制图、Linux管理、编码等
@@ -160,12 +156,12 @@ LaTeX 中的ctex package版本要求：
 
    - 手动狙击（源文件更改后每次编译逐行命令输入一轮）
 
-            xelatex －shell-escape main.tex
+            xelatex -shell-escape main.tex
             bibtex main
-            xelatex －shell-escape main.tex
-            xelatex －shell-escape main.tex
+            xelatex -shell-escape main.tex
+            xelatex -shell-escape main.tex
             splitindex main -- -s hithesis.ist  # 自动生成索引
-            xelatex －shell-escape main.tex
+            xelatex -shell-escape main.tex
             
    - 半自动精确射击（源文件更改后每次编译敲一次）
 
@@ -223,4 +219,3 @@ LaTeX 中的ctex package版本要求：
 - ~~学校教务处和研究生院只提供了规范，并没有提供官方的任何模板（包括word），所以~~ 学校教务处和研究生院提供了规范和[研究生word模板](http://hitgs.hit.edu.cn/ab/1f/c3425a109343/page.htm)以及[本科生word模板](http://jwc.hit.edu.cn/2566/list.htm)(厉害了word哥……)，此模板仅为规范的参考实现，不保证格式审查老师不提意见。任何由于使用本模板而引起的论文格式审查问题均与本模板作者无关
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">hithesis</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/dustincys/hithesis" property="cc:attributionName" rel="cc:attributionURL">https://github.com/dustincys/hithesis</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/dustincys/hithesis" rel="dct:source">https://github.com/dustincys/hithesis</a>上的作品创作。
-

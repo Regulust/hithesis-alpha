@@ -2,7 +2,7 @@
 # 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式)
 ---
 
-[hithesis-alpha](https://github.com/regulust/hithesis-alpha) 是在原 [hithesis](https://github.com/dustincys/hithesis) (~~v2.0.6 2018/12/05~~ v2.0.11 2019/01/09) 基础上进行的改编尝试，添加了开题/中期样式。添加过程不影响原有的关于毕业论文的设置与功能。
+[hithesis-alpha](https://github.com/regulust/hithesis-alpha) 是在原 [hithesis](https://github.com/dustincys/hithesis) (v2.1.0 2020/04/04) 基础上进行的改编尝试，添加了开题/中期样式。添加过程不影响原有的关于毕业论文的设置与功能。
 
 目前对研究生开题/中期样式支持较好，而本科生开题/中期报告存在部分问题，详见下文问题说明。
 
@@ -29,11 +29,22 @@ Table of Contents
 ## 更新记录
 
 **update:**
+
+*v2.1.0.0a 20200417*
+
+- 更新到hithesis v2.1.0版本，支持校区选择；
+- 修改了原版本（hithesis v2.1.0）威海校区毕业论文封面样式；
+- 将 [hithesis-beta](https://github.com/specialpointcentral/hithesis-beta)合并入[hithesis-alpha](https://github.com/Regulust/hithesis-alpha)。
+
+**update:**
+
 *v2.0.11.1a 20200411*
+
 - kaiti/zhongqi的图表序号随section重置刷新，详见[issue-comment](https://github.com/Regulust/hithesis-alpha/issues/1#issuecomment-590268378)。
 
 **update:**
 *v2.0.11.0a 20200205*
+
 - code更新到hithesis v2.0.11版本(主要添加library项控制右翻页等)；
 - 修改了本科开题/中期封面code风格，参fu考zhi自[hithesis-beta](https://github.com/specialpointcentral/hithesis-beta)，按[教务处](http://jwc.hit.edu.cn/2566/list.htm)要求，移去班号项目，第二行标题改为居中（但\lishu问题依然没有解决，详见[issue](https://github.com/Regulust/hithesis-alpha/issues/1)；
 - 更新研究生开题/中期封面code，使自动生成的封面与[研究生院样例](http://hitgs.hit.edu.cn/e0/b2/c3359a123058/page.psp)更加接近，但具体页面参数数值未精确校准。
@@ -106,7 +117,7 @@ Table of Contents
 ### 变通方法
 - 目前bug问题主要存在于报告的封面页，如果自动生成封面无法满足需要，可以采用变通方法
 首先，自行下载并填写学校word模板封面页，然后生成pdf文件，放入front文件夹，命名为report_cover.pdf，使用
-```\includepdfmerge{front/report_cover.pdf}	``` 命令手动插入该pdf封面，并注释掉下面```\input{front/reportcover}```  及 ```\makecover``` 两行。
+	```\includepdfmerge{front/report_cover.pdf}	``` 命令手动插入该pdf封面，并注释掉下面```\input{front/reportcover}```  及 ```\makecover``` 两行。
 
 *\* 该变通方法可灵活适用于综合考评、实验报告等其它报告场景。*
 

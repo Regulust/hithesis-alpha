@@ -11,7 +11,7 @@
 
 ***Happy LaTeXing!***
 
-*Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，新版本~~更新了关于版芯等设置~~更加稳定。*
+*Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，新版本更新了关于版芯等设置且更加稳定。*
 
 Table of Contents
 =================
@@ -78,10 +78,10 @@ Table of Contents
 
 ## 使用说明
 *推荐前往[hithesis](https://github.com/dustincys/hithesis)先阅读原说明或者在终端执行```texdoc hithesis```阅读原说明文档(需已安装TeXLive2017及更新版本)。*
-- 基本使用方法与原来hithesis一致
-先执行```latex hithesis.ins```(macOS/Linux) ```lualatex hithesis.ins```(Windows，未测试)，然后在主文档中正常选择学位类型 ```type=doctor/master/bachelor```
-- 选择```stage=kaiti,zhongqi```
-如需使用开题/中期报告时选填(需放在type项前)，去掉该项缺省为false，即为原来hithesisd的本硕博毕业论文格式(切换原模板时若makecover报错，请注意在main.tex中切换封面文件 -> \input{front/cover})。
+- 基本使用方法与原来hithesis一致，
+在终端执行```latex hithesis.ins```(macOS/Linux) ```lualatex hithesis.ins```(Windows，未测试)，然后在主文档中正常选择学位类型 ```type=doctor/master/bachelor```
+- 使用开题/中期报告时，选填```stage=kaiti,zhongqi```，该项需放在type项前
+，去掉该项缺省为false，即为原来hithesisd的本硕博毕业论文格式(切换原模板时若makecover报错，请注意在main.tex中切换封面文件 -> \input{front/cover})。
 - ~~选择```noheader=true```,
 添加全局“没有页眉”选项，某些老师可能要求开题、中期报告没有页眉，去掉该项缺省为false，页眉正常显示，如果在bachelor下使用，优先级高于bsheadrule。~~ **v2.0.6.2a 已经合并入headersetting选项**
 

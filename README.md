@@ -10,7 +10,8 @@
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
 
 ***Happy LaTeXing!***
-*Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，最新版本更新了关于版芯等设置。*
+
+*Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，新版本~~更新了关于版芯等设置~~更加稳定。*
 
 Table of Contents
 =================
@@ -28,12 +29,11 @@ Table of Contents
 
 ## 更新记录
 **update**
-*v2.1.0.1a 20200427*
+*v2.1.0.1a 20200417*
 - minor fix: 更新一些提示语句等，修正\makecomment日期横线长度
 - Longtable caption problem fixed by [SPC](https://github.com/specialpointcentral)
 
 **update:**
-
 *v2.1.0.0a 20200417*
 
 - 更新到hithesis v2.1.0版本，支持校区选择；
@@ -43,7 +43,6 @@ Table of Contents
 *by [SPC](https://github.com/specialpointcentral)，大神太6了🙏*
 
 **update:**
-
 *v2.0.11.1a 20200411*
 
 - kaiti/zhongqi的图表序号随section重置刷新，详见[issue-comment](https://github.com/Regulust/hithesis-alpha/issues/1#issuecomment-590268378)。
@@ -52,7 +51,7 @@ Table of Contents
 *v2.0.11.0a 20200205*
 
 - code更新到hithesis v2.0.11版本(主要添加library项控制右翻页等)；
-- 修改了本科开题/中期封面code风格，参fu考zhi自[hithesis-beta](https://github.com/specialpointcentral/hithesis-beta)，按[教务处](http://jwc.hit.edu.cn/2566/list.htm)要求，移去班号项目，第二行标题改为居中（但\lishu问题依然没有解决，详见[issue](https://github.com/Regulust/hithesis-alpha/issues/1)；
+- 修改了本科开题/中期封面code风格，参fu考zhi自[hithesis-beta](https://github.com/specialpointcentral/hithesis-beta)，按[教务处](http://jwc.hit.edu.cn/2566/list.htm)要求，移去班号项目，第二行标题改为居中（~~但\lishu问题依然没有解决~~已解决，详见[issue](https://github.com/Regulust/hithesis-alpha/issues/1)和“关于字体问题.txt”）；
 - 更新研究生开题/中期封面code，使自动生成的封面与[研究生院样例](http://hitgs.hit.edu.cn/e0/b2/c3359a123058/page.psp)更加接近，但具体页面参数数值未精确校准。
 
 *封面方面依然推荐尝试“变通方法”；*
@@ -74,6 +73,7 @@ Table of Contents
 
 **Original:**
 *V2.0.6a 20181219*
+
 版本号命名方式：前三位为hithesis版本号，a表示alpha，若有第4位表示hithesis-alpha的更新修复。
 
 ## 使用说明
@@ -114,7 +114,7 @@ Table of Contents
 ## 问题及变通
 ### 存在的bug问题
 - **本科生开题/中期的封面与学校样例存在差别**
-开题报告等字符/行间距不符合；封面底部“哈尔滨工业大学教务处”未能更改隶书字体(这里我也没搞明白，理论上原来已经定义了\lishu命令，但使用无效)。*【关于\lishu 讨论见[issue](https://github.com/Regulust/hithesis-alpha/issues/1)】*
+开题报告等字符/行间距不符合；封面底部“哈尔滨工业大学教务处”~~未能更改隶书字体(这里我也没搞明白，理论上原来已经定义了\lishu命令，但使用无效)~~。*【v2.1.0.0a已解决 by [SPC](https://github.com/specialpointcentral)，详见[issue1](https://github.com/Regulust/hithesis-alpha/issues/1) 和 “关于字体问题.txt”】*
 - **“题目”行居中方式与学校样例存在差别**
 目前和标准模板还有些许区别，“题目”两个字与题目的内容是一同居中的，而研究生院、教务处模板可能是题目两个字位置固定，题目内容文字单独居中。
 - **开题/中期报告封面部分代码风格老旧**

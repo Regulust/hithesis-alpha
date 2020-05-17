@@ -12,6 +12,7 @@
 ***Happy LaTeXing!***
 
 *Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，新版本更新了关于版芯等设置且更加稳定。*
+
 *Notice: [dustincys](https://github.com/dustincys)正在为**hithesis**添加广泛的校区、本硕博、开题中期等各类报告格式的支持，详细内容及更新请查看其[next分支](https://github.com/dustincys/hithesis/tree/next)。*
 
 Table of Contents

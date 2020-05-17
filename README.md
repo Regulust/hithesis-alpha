@@ -4,7 +4,7 @@
 
 [hithesis-alpha](https://github.com/regulust/hithesis-alpha) 是在原 [hithesis](https://github.com/dustincys/hithesis) (v2.1.0 2020/04/04) 基础上进行的改编尝试，添加了开题/中期样式。添加过程不影响原有的关于毕业论文的设置与功能。
 
-目前对研究生开题/中期样式支持较好，而本科生开题/中期报告存在部分问题，详见下文问题说明。
+目前对研究生开题/中期样式支持较好，而~~本科生开题/中期报告存在部分问题~~，详见下文问题说明。
 
 本项目继承原[hithesis](https://github.com/dustincys/hithesis) CC协议及[LaTeX Project Public License](https://www.latex-project.org/lppl/)。<br />由[hithesis-alpha](https://github.com/Regulust/hithesis-alpha) 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/80x15.png" /></a>
@@ -12,6 +12,7 @@
 ***Happy LaTeXing!***
 
 *Notice: 如果只是用作毕业论文用途，推荐使用原版[hithesis](https://github.com/dustincys/hithesis)，新版本更新了关于版芯等设置且更加稳定。*
+*Notice: [dustincys](https://github.com/dustincys)正在为**hithesis**添加广泛的校区、本硕博、开题中期等各类报告格式的支持，详细内容及更新请查看其[next分支](https://github.com/dustincys/hithesis/tree/next)。*
 
 Table of Contents
 =================

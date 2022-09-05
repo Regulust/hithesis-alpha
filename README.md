@@ -1,7 +1,7 @@
 # hithesis-alpha
 # 哈尔滨工业大学LaTeX论文模板(添加开题/中期报告样式)
 ---
-*Notice2021: [dustincys](https://github.com/dustincys)已为原版 [hithesis (v3.0+)](https://github.com/dustincys/hithesis) 添加了一校三区、本硕博、开题中期毕业等各类报告的支持，格式、代码更加规范，通用性更强，可以前往下载使用，本项目已不再更新，Happy LaTeXing!*
+*Notice2021: [dustincys](https://github.com/dustincys)等刀客已为原版 [hithesis (v3.0+)](https://github.com/hithesis/hithesis) 添加了一校三区、本硕博、开题中期毕业等各类报告的支持，格式、代码更加规范，通用性更强，可以前往下载使用，本项目已不再更新，Happy LaTeXing!*
 
 ---
 
